@@ -1,6 +1,6 @@
 import React from 'react';
 import '../assets/styles.scss';
-import portrait from '../assets/img/portrait.jpg'
+import portrait from '../assets/img/system.jpg'
 
 const AboutMe = (props) => {
 
@@ -18,16 +18,13 @@ const AboutMe = (props) => {
                     <img src={portrait} alt="Arman Ali" className="bio-image" />
                     <div className="bio">
                         <h3 className="text" style={{ fontWeight: 'bold', marginBottom: '1rem' }}>BIO</h3>
-                        <p>I'm a versatile MERN Full Stack Web Developer with 5+ years of professional exposure in JavaScript technology such as ReactJs, MongoDB, ExpressJs, and NodeJs.</p>
-                        <p> Good understanding of Document Object Model (DOM) and DOM Functions. Extensive use of Node environment using NPM, Yarn, and Mongo DB along with Mongoose to create server-side applications and wrote MapReduce program to sort the words in a file.
+                        <p> I'm a versatile MERN Full Stack Web Developer with 5+ years of professional exposure in JavaScript technology such as ReactJs, MongoDB, ExpressJs, and NodeJs.</p>
+                        <p> I've good understanding of document object model (DOM) and DOM functions. Extensive use of Node environment using NPM, Yarn, and Mongo DB along with Mongoose to create server-side applications and wrote MapReduce program to sort the words in a file.
                             Expertise in creating user validation forms and using RESTful services for sending the data to the server.
                             Expertise in developing web pages using ReactJs, HTML5, CSS3, SASS, Object-Oriented JavaScript, ES6, JQuery, AJAX, JSON, XML.
                         </p>
-                        <p>Highly innovative, passionate, and straight-shooting web developer with high proficiencies in problem-solving, coding, and designing.
-                        </p>
-                        <p>
-                            I’m curious, and I enjoy work that challenges me to learn something new and stretch in a different direction.
-                        </p>
+                        <p> Highly innovative, passionate, and straight-shooting web developer with high proficiencies in problem-solving, coding, and designing.</p>
+                        <p> I’m curious, and I enjoy work that challenges me to learn something new and stretch in a different direction.</p>
                     </div>
                     <div className="job job-1">
                         <h3>Web Design</h3>

@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { FaTwitter, FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
+import Typical from 'react-typical';
+import ParticlesBg from 'particles-bg';
+import portrait from '../assets/img/portrait.jpg';
 import About from './about';
 import Work from './work';
 import Contact from './contact';
@@ -59,7 +62,6 @@ const MyProfile = (props) => {
         const navItem = document.querySelectorAll('.nav-item');
         const bgImg = document.getElementById('bg-img');
 
-        console.log('bgImg-->', menu.classList);
         function hideMenu() {
             menuBtn.classList.remove('close');
             menu.classList.remove('show');
@@ -106,7 +108,7 @@ const MyProfile = (props) => {
                 </div>
                 <nav className="menu">
                     <div className="menu-branding">
-                        <div className="portrait"> </div>
+                        <div className="portrait"> <img  className="portrait-img" src={portrait} alt="no"/> </div>
                     </div>
                     <ul className="menu-nav">
                         <li className="nav-item current" onClick={() => handleRedirect('H')}>
@@ -136,31 +138,36 @@ const MyProfile = (props) => {
                 <main id="home">
                     <h1 className="lg-heading">
                         <p>Hi<span className="text-secondary">,</span></p>
-                        <span className="text-secondary">I'm</span> Arman <span className="text-secondary">Ali</span>.
+                        <span className="text-secondary">I'm</span> Arman <span className="text-secondary">M. Ali</span>.
                     </h1>
                     <h2 className="sm-heading">
-                        MERN Stack Developer * * *
+                    <Typical
+                        steps={['', 1000, 'MERN Stack Developer * * *', 500]}
+                        loop={Infinity}
+                        wrapper="p"
+                    />                        
                     </h2>
                     <div className="icons">
-                        <a href="/#">
+                        <a href="https://twitter.com/CooldudeX18" target="_blank" rel="noreferrer">
                             <FaTwitter className="fa-2x" />
                         </a>
-                        <a href="/#">
+                        <span href="/#">
                             <FaFacebook className="fa-2x" />
-                        </a>
-                        <a href="/#">
+                        </span>
+                        <a href="https://www.linkedin.com/in/arman-ali-15a098208/" target="_blank" rel="noreferrer">
                             <FaLinkedin className="fa-2x" />
                         </a>
-                        <a href="/#">
+                        <span href="/#">
                             <FaGithub className="fa-2x" />
-                        </a>
+                        </span>
                     </div>
                 </main>
                 :
                 showAbout ? < About /> : showWork ? <Work /> : showContact && <Contact />
             }
+            <ParticlesBg color="#000000" type="cobweb" bg={true} />
             <footer id="main-footer">
-                Let’s make something special. Copyright &copy; 2020 
+                Let’s make something special. Copyright &copy; 2020
             </footer>
         </div>
     )
