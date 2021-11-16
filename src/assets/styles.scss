@@ -324,6 +324,7 @@ main #home h1 {
   margin-bottom: 50px;
   grid-gap: 2rem;
   grid-template-columns: repeat(3, 1fr);
+  cursor: pointer;
 }
 
 .projects img {
@@ -450,6 +451,7 @@ main #home h1 {
   margin-bottom: 1rem;
   align-self: flex-end;
   background: #0a2d47;
+  cursor: pointer;
   border: 1px #ccd6f6 solid;
   transition: all 0.5s ease-out;
   -webkit-box-sizing: border-box;

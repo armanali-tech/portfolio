@@ -31,12 +31,12 @@ const AboutMe = (props) => {
                         <h3 className="text" style={{ fontWeight: 'bold', marginBottom: '1rem' }}>Get In Touch</h3>
                         <p>Although I’m not currently looking for any new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I’ll try my best to get back to you!</p>
                     </div>
-                    <form className="form-field" action="https://formspree.io/f/mrgrnpnj" method="POST">
+                    <form className="form-field" action="https://formspree.io/f/mrgrnpnj" method="POST" target="_blank" rel="noreferrer">
                         <div className="form-row">
-                            <input className="form-input mr-rem" type="text" name="name" placeholder="Name" required/>
+                            <input className="form-input mr-rem" type="text" name="name" placeholder="Name" required />
                             <input className="form-input" type="email" name="_replyto" placeholder="Email" required />
                         </div>
-                        <input className="form-input" type="text" name="subject" placeholder="Subject" required/>
+                        <input className="form-input" type="text" name="subject" placeholder="Subject" required />
                         <textarea className="form-input msg" type="text" name="massage" placeholder="Message" required />
                         <button className="form-button" type="submit">Send</button>
                     </form>
