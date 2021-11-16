@@ -109,6 +109,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 .menu-branding {
+  display: flex;
   background: #0a2d47;
   transform: translate3d(0, 100%, 0);
   transition: all 0.5s ease-out;
@@ -119,16 +120,20 @@ body::-webkit-scrollbar-thumb {
 }
 
 .menu-branding .portrait {
+  display: flex;
   width: 11rem;
   height: 11rem;
   background-repeat: no-repeat;
   border-radius: 50%;
-  border: solid 3px #9966ff;
+  align-self: center;
+  justify-content: center;
 }
 
 .portrait-img {
-  width: 10.6rem;
+  width: 10rem;
   border-radius: 50%;
+  border: solid 3px #9966ff;
+  align-self: center;
 }
 
 .menu .nav-item {
@@ -443,7 +448,7 @@ main #home h1 {
 
 .form-button {
   width: 10rem;
-  height: 50px;
+  height: 3rem;
   font-size: 16px;
   color: #ccd6f6;
   padding: 0 20px;
@@ -577,7 +582,8 @@ main #home h1 {
 
   .boxes div {
     font-size: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 1rem !important;
+    width: 100%;
   }
 
   .projects {
@@ -592,6 +598,16 @@ main #home h1 {
   .form-row {
     display: flex;
     flex-direction: column;
+  }
+
+  .form-button {
+    width: 7rem;
+    height: 2rem;
+    font-size: 14px;
+  }
+
+  .portrait-img {
+    width: 8rem;
   }
 }
 
