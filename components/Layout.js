@@ -1,11 +1,11 @@
-import React, { PureComponent } from "react";
-import Link from "next/link";
+import React, { PureComponent } from 'react'
+// import Link from "next/link";
 
 class Layout extends PureComponent {
-  render() {
+  render () {
     return (
-      <div className="layout">
-        <header>
+      <div className='layout'>
+        {/* <header>
           <menu>
             <Link href="/about">
               <h3>About</h3>
@@ -28,11 +28,11 @@ class Layout extends PureComponent {
               margin-right: 16px;
             }
           `}</style>
-        </header>
+        </header> */}
         {this.props.children}
       </div>
-    );
+    )
   }
 }
 
-export default Layout;
+export default Layout

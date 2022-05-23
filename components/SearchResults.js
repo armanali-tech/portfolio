@@ -8,7 +8,7 @@ const Item = styled.li`
     a {
       color: #eee;
     }
-    background: ${props => props.theme.colors.primary};
+    background: ${(props) => props.theme.colors.primary};
   }
 `
 
@@ -16,19 +16,19 @@ const REPO_COUNT = 10
 const SearchResults = ({ language, repos, totalRepoCount }) => {
   return (
     <>
-      <h2>Top { REPO_COUNT } { language } repos</h2>
+      <h2>
+        Top {REPO_COUNT} {language} repos
+      </h2>
       <ul>
-        {
-          repos.slice(0, REPO_COUNT).map(item => (
-            <Item key={item.id}>
-              <a href={item.htmlUrl} target='_blank'>
-                { item.name }
-              </a>
-            </Item>
-          ))
-        }
+        {repos.slice(0, REPO_COUNT).map((item) => (
+          <Item key={item.id}>
+            <a href={item.htmlUrl} target='_blank'>
+              {item.name}
+            </a>
+          </Item>
+        ))}
       </ul>
-      <small>{ totalRepoCount } repos found</small>
+      <small>{totalRepoCount} repos found</small>
     </>
   )
 }
