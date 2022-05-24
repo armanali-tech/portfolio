@@ -1,79 +1,78 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import moment from 'moment'
-// import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import moment from "moment";
+import { useRouter } from "next/router";
+import { getWorkshopBatchInfo } from "../services/apiServices";
+import Razorpay from "../components/Razorpay";
 
-const API_URL = process.env.API_BASE_LINK
 const Payment = () => {
   // For Mobile Device
   const [show, setShow] = useState({
     content: true,
-    paymentForm: false
-  })
+    paymentForm: false,
+  });
 
   const handleVisibility = () => {
     setShow({
       content: false,
-      paymentForm: true
-    })
-  }
+      paymentForm: true,
+    });
+  };
 
-  // const router = useRouter();
-  // const { id } = router.query;
+  const [workshopInfo, setWorkshopInfo] = useState({});
 
-  const [workshopInfo, setWorkshopInfo] = useState({})
+  const router = useRouter();
+  const { id = 2 } = router.query;
 
-  const getWorkshopInfo = async () => {
-    return axios
-      .get(`${API_URL}/api/workshop/2/batch`)
-      .then((response) => {
-        const data = response.data.data.batches
-        setWorkshopInfo(data)
+  const workshopBatchInfo = async () => {
+    getWorkshopBatchInfo(id)
+      .then(({ data }) => {
+        const { batches } = data.data;
+        setWorkshopInfo(batches);
       })
       .catch((error) => {
-        console.log('Error : ', error)
-      })
-  }
+        console.error("Error : ", error);
+      });
+  };
 
   useEffect(() => {
-    getWorkshopInfo()
-  }, [])
+    workshopBatchInfo();
+  }, []);
 
   return (
     <PaymentPageContainer show={show}>
-      <div className='content'>
+      <div className="content">
         <Header />
-        <div className='details-view'>
+        <div className="details-view">
           <h1>{workshopInfo.Workshop?.name}</h1>
-          <div className='title-underline' />
-          <h3 style={{ margin: '20px 0' }}>{workshopInfo?.description}</h3>
+          <div className="title-underline" />
+          <h3 style={{ margin: "20px 0" }}>{workshopInfo?.description}</h3>
 
-          <div className='description'>
+          <div className="description">
             <h3>Description:</h3>
 
-            <h4 style={{ margin: '5px 0', fontWeight: '500' }}>
-              Date: {moment(workshopInfo.startDate).format('Do MMM')} -{' '}
-              {moment(workshopInfo.endDate).format('Do MMM')}{' '}
-              {moment(workshopInfo.endDate).format('YYYY')}
+            <h4 style={{ margin: "5px 0", fontWeight: "500" }}>
+              Date: {moment(workshopInfo.startDate).format("Do MMM")} -{" "}
+              {moment(workshopInfo.endDate).format("Do MMM")}{" "}
+              {moment(workshopInfo.endDate).format("YYYY")}
             </h4>
 
-            <h4 style={{ margin: '12px 0' }}>Timings</h4>
+            <h4 style={{ margin: "12px 0" }}>Timings</h4>
 
             {workshopInfo?.BatchSchedules?.map((schedule) => (
               <p key={schedule.id}>
-                {moment(schedule.date).format('dddd')} :{' '}
-                {moment(`${schedule.date} ${schedule.startTime}`).format('LT')}{' '}
-                - {moment(`${schedule.date} ${schedule.endTime}`).format('LT')}
+                {moment(schedule.date).format("dddd")} :{" "}
+                {moment(`${schedule.date} ${schedule.startTime}`).format("LT")}{" "}
+                - {moment(`${schedule.date} ${schedule.endTime}`).format("LT")}
               </p>
             ))}
             {/* <p>Wednesday: Flexible with Recorded Session</p> */}
           </div>
 
-          <div className='notes'>
+          <div className="notes">
             <h3>Important:</h3>
             {workshopInfo.notes?.map((note, index) => (
-              <p key={index} className='note'>
+              <p key={index} className="note">
                 # {note}
               </p>
             ))}
@@ -81,43 +80,43 @@ const Payment = () => {
         </div>
         <PaymentForm handle={{ show, setShow }} workshopInfo={workshopInfo} />
 
-        <div className='contact-info'>
-          <h5 className='short-heading'>Share this on</h5>
-          <div className='social-icons'>
-            <button className='social-button'>
-              <i className='fb-icon' />
+        <div className="contact-info">
+          <h5 className="short-heading">Share this on</h5>
+          <div className="social-icons">
+            <button className="social-button">
+              <i className="fb-icon" />
             </button>
-            <button className='social-button'>
-              <i className='twitter-icon' />
+            <button className="social-button">
+              <i className="twitter-icon" />
             </button>
-            <button className='social-button'>
-              <i className='whatsapp-icon' />
+            <button className="social-button">
+              <i className="whatsapp-icon" />
             </button>
           </div>
 
-          <h5 className='short-heading'>Contact Us</h5>
-          <div className='email-and-call'>
-            <a href='mailto:hola@kaarwan.com'>
+          <h5 className="short-heading">Contact Us</h5>
+          <div className="email-and-call">
+            <a href="mailto:hola@kaarwan.com">
               <img
-                src='/static/mail.svg'
-                alt=''
-                style={{ width: '14px', marginRight: '6px' }}
+                src="/static/mail.svg"
+                alt=""
+                style={{ width: "14px", marginRight: "6px" }}
               />
               hola@kaarwan.com
             </a>
             <br />
-            <a href='tel:9833777469'>
+            <a href="tel:9833777469">
               <img
-                src='/static/phone.svg'
-                alt=''
-                style={{ width: '14px', marginRight: '6px' }}
+                src="/static/mobile.svg"
+                alt=""
+                style={{ width: "14px", marginRight: "6px" }}
               />
               9833777469
             </a>
           </div>
 
-          <h5 className='short-heading'>Terms & Conditions</h5>
-          <div className='terms_and_conditions'>
+          <h5 className="short-heading">Terms & Conditions</h5>
+          <div className="terms_and_conditions">
             <p>
               You agree to share information entered on this page with KAARWAN
               EDUVENTURES PRIVATE LIMITED (owner of this page) and Razorpay,
@@ -153,249 +152,258 @@ const Payment = () => {
       {/* Show on Mobile Device to Open Payment Form */}
       {show.content ? (
         <>
-          <button className='btn-open' onClick={handleVisibility}>
+          <button className="btn-open" onClick={handleVisibility}>
             Next
           </button>
         </>
       ) : null}
     </PaymentPageContainer>
-  )
-}
+  );
+};
 
-export default Payment
+export default Payment;
 
 const PaymentForm = ({ handle, workshopInfo }) => {
+  const [payment, setPayment] = useState(false);
+  const totalGST = workshopInfo.amount * (18 / 100);
+
   const [paymentData, setPaymentData] = useState({
-    name: '',
-    email: '',
-    college: '',
-    phone: '',
-    iam_a: ''
-  })
+    name: "",
+    email: "",
+    college: "",
+    mobile: "",
+    iam: "",
+  });
   const [error, setError] = useState({
     name: false,
     email: false,
     college: false,
-    phone: false,
-    iam_a: false
-  })
+    mobile: false,
+    iam: false,
+  });
 
   const handlePayment = (e) => {
-    e.preventDefault()
-    paymentData.name === ''
+    e.preventDefault();
+    paymentData.name === ""
       ? setError((prevState) => ({ ...prevState, name: true }))
-      : setError((prevState) => ({ ...prevState, name: false }))
+      : setError((prevState) => ({ ...prevState, name: false }));
 
-    paymentData.email === ''
+    paymentData.email === ""
       ? setError((prevState) => ({ ...prevState, email: true }))
-      : setError((prevState) => ({ ...prevState, email: false }))
+      : setError((prevState) => ({ ...prevState, email: false }));
 
-    paymentData.college === ''
+    paymentData.college === ""
       ? setError((prevState) => ({ ...prevState, college: true }))
-      : setError((prevState) => ({ ...prevState, college: false }))
+      : setError((prevState) => ({ ...prevState, college: false }));
 
-    paymentData.phone === ''
-      ? setError((prevState) => ({ ...prevState, phone: true }))
-      : setError((prevState) => ({ ...prevState, phone: false }))
+    paymentData.mobile === ""
+      ? setError((prevState) => ({ ...prevState, mobile: true }))
+      : setError((prevState) => ({ ...prevState, mobile: false }));
 
-    paymentData.iam_a === ''
-      ? setError((prevState) => ({ ...prevState, iam_a: true }))
-      : setError((prevState) => ({ ...prevState, iam_a: false }))
+    paymentData.iam === ""
+      ? setError((prevState) => ({ ...prevState, iam: true }))
+      : setError((prevState) => ({ ...prevState, iam: false }));
 
     if (
       paymentData.email &&
       paymentData.email &&
       paymentData.college &&
-      paymentData.phone &&
-      paymentData.iam_a
+      paymentData.mobile &&
+      paymentData.iam
     ) {
-      console.log(paymentData)
+      setPayment(true);
+      e.target.value = false;
     }
-  }
+  };
 
   const handleInputChange = (e) => {
-    const name = e.target.name
-    const value = e.target.value
-    setPaymentData((prevData) => ({ ...prevData, [name]: value }))
-  }
+    const name = e.target.name;
+    const value = e.target.value;
+    setPaymentData((prevData) => ({ ...prevData, [name]: value }));
+  };
 
   const handleInputBlur = (e) => {
-    const name = e.target.name
+    const name = e.target.name;
     e.target.value &&
       setError((prevState) => ({
         ...prevState,
-        [name]: false
-      }))
-  }
+        [name]: false,
+      }));
+  };
 
   return (
     <PaymentFormContainer show={handle.show.paymentForm}>
-      <div className='title'>
+      <div className="title">
         <button
-          className='btn-back'
+          className="btn-back"
           onClick={() => {
-            handle.setShow({ content: true, paymentForm: false })
+            handle.setShow({ content: true, paymentForm: false });
           }}
         >
           &#10094;
-        </button>{' '}
+        </button>{" "}
         Payment Details
-        <div className='title-underline' />
+        <div className="title-underline" />
       </div>
 
-      <div className='form-section'>
-        <form className='form-UI' noValidate>
-          <div className='input-fields'>
+      <div className="form-section">
+        <form className="form-UI" noValidate>
+          <div className="input-fields">
             {/* Name Field */}
-            <div className='input-container'>
-              <div className='field-label'>Name</div>
-              <div className='field-content'>
-                <div className='input-wrapper'>
+            <div className="input-container">
+              <div className="field-label">Name</div>
+              <div className="field-content">
+                <div className="input-wrapper">
                   <input
-                    type='text'
-                    name='name'
-                    id='name'
+                    type="text"
+                    name="name"
+                    id="name"
                     className={`${
-                      error.name ? 'border-danger' : 'default-border'
-                    } ${paymentData.name && 'border-green'}`}
+                      error.name ? "border-danger" : "default-border"
+                    } ${paymentData.name && "border-green"}`}
                     onChange={handleInputChange}
                     onBlur={handleInputBlur}
                   />
                 </div>
-                <div className='error-message'>
-                  {error.name && 'This field is required'}
+                <div className="error-message">
+                  {error.name && "This field is required"}
                 </div>
-                <div className='field-description'>
+                <div className="field-description">
                   <small />
                 </div>
               </div>
             </div>
 
             {/* Email Field */}
-            <div className='input-container'>
-              <div className='field-label'>Email</div>
-              <div className='field-content'>
-                <div className='input-wrapper'>
+            <div className="input-container">
+              <div className="field-label">Email</div>
+              <div className="field-content">
+                <div className="input-wrapper">
                   <input
-                    type='email'
-                    name='email'
-                    id='email'
+                    type="email"
+                    name="email"
+                    id="email"
                     className={`${
-                      error.email ? 'border-danger' : 'default-border'
-                    } ${paymentData.email && 'border-green'}`}
+                      error.email ? "border-danger" : "default-border"
+                    } ${paymentData.email && "border-green"}`}
                     onChange={handleInputChange}
                     onBlur={handleInputBlur}
                   />
                 </div>
-                <div className='error-message'>
+                <div className="error-message">
                   {error.email &&
                     !paymentData.email &&
-                    'This field is required'}
+                    "This field is required"}
                 </div>
-                <div className='field-description'>
+                <div className="field-description">
                   <small />
                 </div>
               </div>
             </div>
 
             {/* College Field */}
-            <div className='input-container'>
-              <div className='field-label'>College</div>
-              <div className='field-content'>
-                <div className='input-wrapper'>
+            <div className="input-container">
+              <div className="field-label">College</div>
+              <div className="field-content">
+                <div className="input-wrapper">
                   <input
-                    type='text'
-                    name='college'
-                    id='college'
+                    type="text"
+                    name="college"
+                    id="college"
                     className={`${
-                      error.college ? 'border-danger' : 'default-border'
-                    } ${paymentData.college && 'border-green'}`}
+                      error.college ? "border-danger" : "default-border"
+                    } ${paymentData.college && "border-green"}`}
                     onChange={handleInputChange}
                     onBlur={handleInputBlur}
                   />
                 </div>
-                <div className='error-message'>
-                  {error.college && 'This field is required'}
+                <div className="error-message">
+                  {error.college && "This field is required"}
                 </div>
-                <div className='field-description'>
+                <div className="field-description">
                   <small />
                 </div>
               </div>
             </div>
 
-            {/* Phone Field */}
-            <div className='input-container'>
-              <div className='field-label'>Phone</div>
-              <div className='field-content'>
-                <div className='input-wrapper'>
+            {/* mobile Field */}
+            <div className="input-container">
+              <div className="field-label">mobile</div>
+              <div className="field-content">
+                <div className="input-wrapper">
                   <input
-                    type='text'
-                    name='phone'
-                    id='phone'
+                    type="text"
+                    name="mobile"
+                    id="mobile"
                     className={`${
-                      error.phone ? 'border-danger' : 'default-border'
-                    } ${paymentData.phone && 'border-green'}`}
+                      error.mobile ? "border-danger" : "default-border"
+                    } ${paymentData.mobile && "border-green"}`}
                     onChange={handleInputChange}
                     onBlur={handleInputBlur}
                   />
                 </div>
-                <div className='error-message'>
-                  {error.phone && 'This field is required'}
+                <div className="error-message">
+                  {error.mobile && "This field is required"}
                 </div>
-                <div className='field-description'>
+                <div className="field-description">
                   <small />
                 </div>
               </div>
             </div>
 
             {/* I am a --- */}
-            <div className='input-container'>
-              <div className='field-label'>I am a</div>
-              <div className='field-content'>
-                <div className='input-wrapper'>
+            <div className="input-container">
+              <div className="field-label">I am a</div>
+              <div className="field-content">
+                <div className="input-wrapper">
                   <select
-                    name='iam_a'
-                    id='iam_a'
+                    name="iam"
+                    id="iam"
                     className={`${
-                      error.iam_a ? 'border-danger' : 'default-border'
-                    } ${paymentData.iam_a && 'border-green'}`}
+                      error.iam ? "border-danger" : "default-border"
+                    } ${paymentData.iam && "border-green"}`}
                     onChange={handleInputChange}
                     onBlur={handleInputBlur}
                   >
-                    <option defaultValue={'student'} disabled>
-                      --Select--
-                    </option>
-                    <option value='student'>Student</option>
-                    <option value='graduate'>Graduate</option>
-                    <option value='professional'>Professional</option>
+                    <option value={""}>--Select--</option>
+                    <option value="student">Student</option>
+                    <option value="graduate">Graduate</option>
+                    <option value="professional">Professional</option>
                   </select>
                 </div>
-                <div className='error-message'>
-                  {error.iam_a && 'This field is required'}
+                <div className="error-message">
+                  {error.iam && "This field is required"}
                 </div>
-                <div className='field-description'>
+                <div className="field-description">
                   <small />
                 </div>
               </div>
             </div>
 
             {/* Batch No */}
-            <div className='input-container'>
-              <div className='field-label'>Batch 12</div>
-              <div className='field-content'>
-                <div className='input-wrapper'>
+            <div className="input-container">
+              <div className="field-label">Batch 12</div>
+              <div className="field-content">
+                <div className="input-wrapper">
                   <input
-                    type='text'
-                    defaultValue={'₹ ' + workshopInfo.amount}
-                    name='gst'
-                    id='gst'
-                    className='default-border field-batch'
+                    type="text"
+                    defaultValue={
+                      "₹ " + workshopInfo.showGST
+                        ? workshopInfo.amount - totalGST
+                        : workshopInfo.amount
+                    }
+                    name="gst"
+                    id="gst"
+                    className="default-border field-batch"
                     disabled
                   />
                 </div>
-                <div className='error-message' />
-                <div className='field-description'>
-                  <small>Limited Seats. Date: 2nd July-31st July 2022</small>
+                <div className="error-message" />
+                <div className="field-description">
+                  <small>
+                    Limited Seats. Workshop Date:{" "}
+                    {moment(workshopInfo.startDate).format("Do MMM")}
+                  </small>
                 </div>
               </div>
             </div>
@@ -403,19 +411,19 @@ const PaymentForm = ({ handle, workshopInfo }) => {
             {/* GST Field */}
 
             {workshopInfo.showGST && (
-              <div className='input-container'>
-                <div className='field-label'>GST</div>
-                <div className='field-content'>
-                  <div className='input-wrapper'>
+              <div className="input-container">
+                <div className="field-label">GST</div>
+                <div className="field-content">
+                  <div className="input-wrapper">
                     <input
-                      type='text'
-                      defaultValue={'₹ 1,350.00'}
-                      className='default-border field-gst'
+                      type="text"
+                      defaultValue={totalGST}
+                      className="default-border field-gst"
                       disabled
                     />
                   </div>
-                  <div className='error-message' />
-                  <div className='field-description'>
+                  <div className="error-message" />
+                  <div className="field-description">
                     <small>GST @ 18%</small>
                   </div>
                 </div>
@@ -423,28 +431,33 @@ const PaymentForm = ({ handle, workshopInfo }) => {
             )}
           </div>
 
-          <div className='footer'>
-            <div className='payment-methods'>
+          <div className="footer">
+            <div className="payment-methods">
               <img
-                src='https://cdn.razorpay.com/static/assets/pay_methods_branding.png'
-                alt=''
+                src="https://cdn.razorpay.com/static/assets/pay_methods_branding.png"
+                alt=""
               />
             </div>
             <button
-              className='payment-button'
-              type='submit'
+              className="payment-button"
+              type="submit"
               onClick={handlePayment}
             >
-              Pay ₹ 8,849.00
+              Pay ₹ {workshopInfo.amount}
             </button>
           </div>
         </form>
       </div>
+      {payment ? (
+        <Razorpay paymentInfo={{ ...paymentData, ...workshopInfo }} />
+      ) : (
+        ""
+      )}
     </PaymentFormContainer>
-  )
-}
+  );
+};
 
-const PaymentPageContainer = styled('div')`
+const PaymentPageContainer = styled("div")`
   position: relative;
   width: 100%;
   background-color: #fcfcfc;
@@ -452,7 +465,7 @@ const PaymentPageContainer = styled('div')`
   background-position: right;
   background-size: cover;
   box-sizing: border-box;
-  overflow-y: ${(props) => (props.show.content ? 'auto' : 'hidden')};
+  overflow-y: ${(props) => (props.show.content ? "auto" : "hidden")};
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   h1,
   h2,
@@ -687,21 +700,21 @@ const PaymentPageContainer = styled('div')`
       display: block;
     }
   }
-`
+`;
 
 const Header = () => {
   return (
     <HeaderContainer>
-      <div className='company-logo'>
+      <div className="company-logo">
         <img
-          src='https://cdn.razorpay.com/logos/GPKyOqzis6SPB4_large.jpg'
-          alt='company-logo'
+          src="https://cdn.razorpay.com/logos/GPKyOqzis6SPB4_large.jpg"
+          alt="company-logo"
         />
       </div>
-      <div className='company-title'>KAARWAN EDUVENTURES PRIVATE LIMITED</div>
+      <div className="company-title">KAARWAN EDUVENTURES PRIVATE LIMITED</div>
     </HeaderContainer>
-  )
-}
+  );
+};
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -736,9 +749,9 @@ const HeaderContainer = styled.div`
     justify-content: center;
     align-items: center;
   }
-`
+`;
 
-const PaymentFormContainer = styled('div')`
+const PaymentFormContainer = styled("div")`
   position: absolute;
   right: 16%;
   width: 480px;
@@ -910,7 +923,7 @@ const PaymentFormContainer = styled('div')`
     left: 0;
     bottom: 0;
     z-index: 5;
-    display: ${(props) => (props.show ? 'block' : 'none')};
+    display: ${(props) => (props.show ? "block" : "none")};
     .footer {
       flex-direction: column;
     }
@@ -918,4 +931,4 @@ const PaymentFormContainer = styled('div')`
       display: inline-block;
     }
   }
-`
+`;

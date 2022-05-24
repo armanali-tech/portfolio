@@ -1,10 +1,10 @@
 const path = require("path");
+const next = require("next");
 const express = require("express");
 const compression = require("compression");
-const next = require("next");
 const helmet = require("helmet");
 
-const port = parseInt(process.env.PORT, 10) || 3000;
+const port = parseInt(process.env.PORT, 10) || 4000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
 const handler = app.getRequestHandler();
