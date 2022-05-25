@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { createPayment } from "../services/apiServices";
+import { initiatePayment, addUser } from "../services/apiServices";
+// import jsdom from "jsdom";
+// const { JSDOM } = jsdom;
+// global.document = new JSDOM().window.document;
 
 function loadScript(src) {
   return new Promise((resolve) => {
@@ -27,7 +30,6 @@ const Razorpay = ({ paymentInfo }) => {
       alert("Razorpay SDK failed to load. Are you online?");
       return;
     }
-
     const payload = {
       name: paymentInfo.name,
       email: paymentInfo.email,
@@ -35,10 +37,13 @@ const Razorpay = ({ paymentInfo }) => {
       iam: paymentInfo.iam,
       college: paymentInfo.college,
       amount: paymentInfo.amount,
-      batchId: paymentInfo.batchId,
+      batchId: paymentInfo.id,
     };
 
-    const data = await createPayment(payload).then(
+    const user = await addUser(payload);
+    console.log(user);
+
+    var data = await initiatePayment(payload).then(
       ({ data }) => data.data.order
     );
 
@@ -47,8 +52,8 @@ const Razorpay = ({ paymentInfo }) => {
         ? process.env.RAZORPAY_ID_TEST
         : process.env.RAZORPAY_ID_LIVE,
       currency: "INR",
-      amount: data.amount.toString(),
-      order_id: data.rzpOrderId,
+      amount: paymentInfo.amount.toString(),
+      order_id: data?.rzpOrderId,
       name: "KAARWAN EDUVENTURES PVT LTD",
       description: paymentInfo?.Workshop?.name,
       image: "https://cdn.razorpay.com/logos/GPKyOqzis6SPB4_large.jpg",

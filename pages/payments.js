@@ -107,7 +107,7 @@ const Payment = () => {
             <br />
             <a href="tel:9833777469">
               <img
-                src="/static/mobile.svg"
+                src="/static/phone.svg"
                 alt=""
                 style={{ width: "14px", marginRight: "6px" }}
               />
@@ -365,7 +365,7 @@ const PaymentForm = ({ handle, workshopInfo }) => {
                     onChange={handleInputChange}
                     onBlur={handleInputBlur}
                   >
-                    <option value={""}>--Select--</option>
+                    <option value="">--Select--</option>
                     <option value="student">Student</option>
                     <option value="graduate">Graduate</option>
                     <option value="professional">Professional</option>
@@ -387,11 +387,14 @@ const PaymentForm = ({ handle, workshopInfo }) => {
                 <div className="input-wrapper">
                   <input
                     type="text"
-                    defaultValue={
-                      "₹ " + workshopInfo.showGST
-                        ? workshopInfo.amount - totalGST
-                        : workshopInfo.amount
-                    }
+                    style={{ textAlign: "center" }}
+                    defaultValue={`
+                      ₹ ${
+                        workshopInfo?.showGST
+                          ? workshopInfo.amount - totalGST
+                          : workshopInfo.amount
+                      }
+                    `}
                     name="gst"
                     id="gst"
                     className="default-border field-batch"
@@ -417,7 +420,8 @@ const PaymentForm = ({ handle, workshopInfo }) => {
                   <div className="input-wrapper">
                     <input
                       type="text"
-                      defaultValue={totalGST}
+                      style={{ textAlign: "center" }}
+                      defaultValue={`₹ ${totalGST}`}
                       className="default-border field-gst"
                       disabled
                     />
