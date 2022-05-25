@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import moment from "moment";
-import { useRouter } from "next/router";
-import { getWorkshopBatchInfo } from "../services/apiServices";
-import Razorpay from "../components/Razorpay";
+// import { useRouter } from "next/router";
+import { getWorkshopBatchInfo } from "../../services/apiServices";
+import Razorpay from "../../components/Razorpay";
 
-const Payment = () => {
+export async function getServerSideProps({ query }) {
+  return {
+    props: query, // will be passed to props
+  };
+}
+
+const Payment = (props) => {
   // For Mobile Device
   const [show, setShow] = useState({
     content: true,
@@ -21,11 +27,10 @@ const Payment = () => {
 
   const [workshopInfo, setWorkshopInfo] = useState({});
 
-  const router = useRouter();
-  const { id = 2 } = router.query;
+  const { workshopId } = props;
 
   const workshopBatchInfo = async () => {
-    getWorkshopBatchInfo(id)
+    getWorkshopBatchInfo(workshopId)
       .then(({ data }) => {
         const { batches } = data.data;
         setWorkshopInfo(batches);
