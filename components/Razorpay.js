@@ -18,8 +18,6 @@ function loadScript(src) {
   });
 }
 
-const __DEV__ = document.domain === "localhost";
-
 const Razorpay = ({ paymentInfo }) => {
   async function displayRazorpay() {
     const res = await loadScript(
@@ -48,9 +46,7 @@ const Razorpay = ({ paymentInfo }) => {
     );
 
     const options = {
-      key: __DEV__
-        ? process.env.RAZORPAY_ID_TEST
-        : process.env.RAZORPAY_ID_LIVE,
+      key: process.env.RAZORPAY_ID_TEST,
       currency: "INR",
       amount: paymentInfo.amount.toString(),
       order_id: data?.rzpOrderId,
@@ -73,6 +69,7 @@ const Razorpay = ({ paymentInfo }) => {
   }
 
   useEffect(() => {
+    loadScript();
     displayRazorpay();
   }, []);
 
