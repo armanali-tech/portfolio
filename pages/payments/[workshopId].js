@@ -54,8 +54,6 @@ const Payment = (props) => {
           <h3 style={{ margin: "20px 0" }}>{workshopInfo?.description}</h3>
 
           <div className="description">
-            <h3>Description:</h3>
-
             <h4 style={{ margin: "5px 0", fontWeight: "500" }}>
               Date: {moment(workshopInfo.startDate).format("Do MMM")} -{" "}
               {moment(workshopInfo.endDate).format("Do MMM")}{" "}
@@ -172,10 +170,13 @@ const PaymentForm = ({ handle, workshopInfo }) => {
   const [payment, setPayment] = useState(false);
   const totalGST = workshopInfo.amount * (18 / 100);
 
+  const [showIam, setShowIam] = useState(false);
+
   const [paymentData, setPaymentData] = useState({
     name: "",
     email: "",
     college: "",
+    company: "",
     mobile: "",
     iam: "",
   });
@@ -183,6 +184,7 @@ const PaymentForm = ({ handle, workshopInfo }) => {
     name: false,
     email: false,
     college: false,
+    company: false,
     mobile: false,
     iam: false,
   });
@@ -209,13 +211,7 @@ const PaymentForm = ({ handle, workshopInfo }) => {
       ? setError((prevState) => ({ ...prevState, iam: true }))
       : setError((prevState) => ({ ...prevState, iam: false }));
 
-    if (
-      paymentData.email &&
-      paymentData.email &&
-      paymentData.college &&
-      paymentData.mobile &&
-      paymentData.iam
-    ) {
+    if (paymentData.email && paymentData.email && paymentData.mobile) {
       setPayment(true);
       e.target.value = false;
     }
@@ -225,6 +221,7 @@ const PaymentForm = ({ handle, workshopInfo }) => {
     const name = e.target.name;
     const value = e.target.value;
     setPaymentData((prevData) => ({ ...prevData, [name]: value }));
+    setShowIam(true);
   };
 
   const handleInputBlur = (e) => {
@@ -306,34 +303,9 @@ const PaymentForm = ({ handle, workshopInfo }) => {
               </div>
             </div>
 
-            {/* College Field */}
+            {/* Mobile Field */}
             <div className="input-container">
-              <div className="field-label">College</div>
-              <div className="field-content">
-                <div className="input-wrapper">
-                  <input
-                    type="text"
-                    name="college"
-                    id="college"
-                    className={`${
-                      error.college ? "border-danger" : "default-border"
-                    } ${paymentData.college && "border-green"}`}
-                    onChange={handleInputChange}
-                    onBlur={handleInputBlur}
-                  />
-                </div>
-                <div className="error-message">
-                  {error.college && "This field is required"}
-                </div>
-                <div className="field-description">
-                  <small />
-                </div>
-              </div>
-            </div>
-
-            {/* mobile Field */}
-            <div className="input-container">
-              <div className="field-label">mobile</div>
+              <div className="field-label">Mobile</div>
               <div className="field-content">
                 <div className="input-wrapper">
                   <input
@@ -357,33 +329,89 @@ const PaymentForm = ({ handle, workshopInfo }) => {
             </div>
 
             {/* I am a --- */}
-            <div className="input-container">
-              <div className="field-label">I am a</div>
-              <div className="field-content">
-                <div className="input-wrapper">
-                  <select
-                    name="iam"
-                    id="iam"
-                    className={`${
-                      error.iam ? "border-danger" : "default-border"
-                    } ${paymentData.iam && "border-green"}`}
-                    onChange={handleInputChange}
-                    onBlur={handleInputBlur}
-                  >
-                    <option value="">--Select--</option>
-                    <option value="student">Student</option>
-                    <option value="graduate">Graduate</option>
-                    <option value="professional">Professional</option>
-                  </select>
-                </div>
-                <div className="error-message">
-                  {error.iam && "This field is required"}
-                </div>
-                <div className="field-description">
-                  <small />
+            {showIam && (
+              <div className="input-container">
+                <div className="field-label">I am a</div>
+                <div className="field-content">
+                  <div className="input-wrapper">
+                    <select
+                      name="iam"
+                      id="iam"
+                      className={`${
+                        error.iam ? "border-danger" : "default-border"
+                      } ${paymentData.iam && "border-green"}`}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                    >
+                      <option value="">--Select--</option>
+                      <option value="student">Student</option>
+                      <option value="graduate">Graduate</option>
+                      <option value="professional">Professional</option>
+                    </select>
+                  </div>
+                  <div className="error-message">
+                    {error.iam && "This field is required"}
+                  </div>
+                  <div className="field-description">
+                    <small />
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
+
+            {/* College Field */}
+            {(paymentData.iam === "student" ||
+              paymentData.iam === "graduate") && (
+              <div className="input-container">
+                <div className="field-label">College</div>
+                <div className="field-content">
+                  <div className="input-wrapper">
+                    <input
+                      type="text"
+                      name="college"
+                      id="college"
+                      className={`${
+                        error.college ? "border-danger" : "default-border"
+                      } ${paymentData.college && "border-green"}`}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                    />
+                  </div>
+                  <div className="error-message">
+                    {error.college && "This field is required"}
+                  </div>
+                  <div className="field-description">
+                    <small />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {paymentData.iam === "professional" && (
+              <div className="input-container">
+                <div className="field-label">Company</div>
+                <div className="field-content">
+                  <div className="input-wrapper">
+                    <input
+                      type="text"
+                      name="college"
+                      id="college"
+                      className={`${
+                        error.college ? "border-danger" : "default-border"
+                      } ${paymentData.college && "border-green"}`}
+                      onChange={handleInputChange}
+                      onBlur={handleInputBlur}
+                    />
+                  </div>
+                  <div className="error-message">
+                    {error.college && "This field is required"}
+                  </div>
+                  <div className="field-description">
+                    <small />
+                  </div>
+                </div>
+              </div>
+            )}
 
             {/* Batch No */}
             <div className="input-container">
@@ -392,7 +420,6 @@ const PaymentForm = ({ handle, workshopInfo }) => {
                 <div className="input-wrapper">
                   <input
                     type="text"
-                    style={{ textAlign: "center" }}
                     defaultValue={`
                       ₹ ${
                         workshopInfo?.showGST
@@ -425,7 +452,6 @@ const PaymentForm = ({ handle, workshopInfo }) => {
                   <div className="input-wrapper">
                     <input
                       type="text"
-                      style={{ textAlign: "center" }}
                       defaultValue={`₹ ${totalGST}`}
                       className="default-border field-gst"
                       disabled
