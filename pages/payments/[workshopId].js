@@ -4,6 +4,7 @@ import moment from "moment";
 // import { useRouter } from "next/router";
 import { getWorkshopBatchInfo } from "../../services/apiServices";
 import Razorpay from "../../components/Razorpay";
+import Modal from "../../components/Modal";
 
 export async function getServerSideProps({ query }) {
   return {
@@ -43,6 +44,16 @@ const Payment = (props) => {
   useEffect(() => {
     workshopBatchInfo();
   }, []);
+
+  if (!workshopInfo) {
+    return (
+      <Modal auto={true}>
+        <ModalContent>
+          <h2>Workshops coming soon...</h2>
+        </ModalContent>
+      </Modal>
+    );
+  }
 
   return (
     <PaymentPageContainer show={show}>
@@ -170,8 +181,6 @@ const PaymentForm = ({ handle, workshopInfo }) => {
   const [payment, setPayment] = useState(false);
   const totalGST = workshopInfo.amount * (18 / 100);
 
-  const [showIam, setShowIam] = useState(false);
-
   const [paymentData, setPaymentData] = useState({
     name: "",
     email: "",
@@ -211,6 +220,13 @@ const PaymentForm = ({ handle, workshopInfo }) => {
       ? setError((prevState) => ({ ...prevState, iam: true }))
       : setError((prevState) => ({ ...prevState, iam: false }));
 
+    if (paymentData.iam === "student" || paymentData.iam === "graduate") {
+      delete paymentData.company;
+    }
+    if (paymentData.iam === "professional") {
+      delete paymentData.college;
+    }
+
     if (paymentData.email && paymentData.email && paymentData.mobile) {
       setPayment(true);
       e.target.value = false;
@@ -221,7 +237,6 @@ const PaymentForm = ({ handle, workshopInfo }) => {
     const name = e.target.name;
     const value = e.target.value;
     setPaymentData((prevData) => ({ ...prevData, [name]: value }));
-    setShowIam(true);
   };
 
   const handleInputBlur = (e) => {
@@ -312,6 +327,7 @@ const PaymentForm = ({ handle, workshopInfo }) => {
                     type="text"
                     name="mobile"
                     id="mobile"
+                    minLength={10}
                     className={`${
                       error.mobile ? "border-danger" : "default-border"
                     } ${paymentData.mobile && "border-green"}`}
@@ -329,35 +345,33 @@ const PaymentForm = ({ handle, workshopInfo }) => {
             </div>
 
             {/* I am a --- */}
-            {showIam && (
-              <div className="input-container">
-                <div className="field-label">I am a</div>
-                <div className="field-content">
-                  <div className="input-wrapper">
-                    <select
-                      name="iam"
-                      id="iam"
-                      className={`${
-                        error.iam ? "border-danger" : "default-border"
-                      } ${paymentData.iam && "border-green"}`}
-                      onChange={handleInputChange}
-                      onBlur={handleInputBlur}
-                    >
-                      <option value="">--Select--</option>
-                      <option value="student">Student</option>
-                      <option value="graduate">Graduate</option>
-                      <option value="professional">Professional</option>
-                    </select>
-                  </div>
-                  <div className="error-message">
-                    {error.iam && "This field is required"}
-                  </div>
-                  <div className="field-description">
-                    <small />
-                  </div>
+            <div className="input-container">
+              <div className="field-label">I am a</div>
+              <div className="field-content">
+                <div className="input-wrapper">
+                  <select
+                    name="iam"
+                    id="iam"
+                    className={`${
+                      error.iam ? "border-danger" : "default-border"
+                    } ${paymentData.iam && "border-green"}`}
+                    onChange={handleInputChange}
+                    onBlur={handleInputBlur}
+                  >
+                    <option value="">--Select--</option>
+                    <option value="student">Student</option>
+                    <option value="graduate">Graduate</option>
+                    <option value="professional">Professional</option>
+                  </select>
+                </div>
+                <div className="error-message">
+                  {error.iam && "This field is required"}
+                </div>
+                <div className="field-description">
+                  <small />
                 </div>
               </div>
-            )}
+            </div>
 
             {/* College Field */}
             {(paymentData.iam === "student" ||
@@ -394,17 +408,17 @@ const PaymentForm = ({ handle, workshopInfo }) => {
                   <div className="input-wrapper">
                     <input
                       type="text"
-                      name="college"
-                      id="college"
+                      name="company"
+                      id="company"
                       className={`${
-                        error.college ? "border-danger" : "default-border"
-                      } ${paymentData.college && "border-green"}`}
+                        error.company ? "border-danger" : "default-border"
+                      } ${paymentData.company && "border-green"}`}
                       onChange={handleInputChange}
                       onBlur={handleInputBlur}
                     />
                   </div>
                   <div className="error-message">
-                    {error.college && "This field is required"}
+                    {error.company && "This field is required"}
                   </div>
                   <div className="field-description">
                     <small />
@@ -414,8 +428,8 @@ const PaymentForm = ({ handle, workshopInfo }) => {
             )}
 
             {/* Batch No */}
-            <div className="input-container">
-              <div className="field-label">Batch 12</div>
+            {/* <div className="input-container">
+              <div className="field-label">Batch {workshopInfo.id}</div>
               <div className="field-content">
                 <div className="input-wrapper">
                   <input
@@ -430,6 +444,32 @@ const PaymentForm = ({ handle, workshopInfo }) => {
                     name="gst"
                     id="gst"
                     className="default-border field-batch"
+                    disabled
+                  />
+                </div>
+                <div className="error-message" />
+                <div className="field-description">
+                  <small>
+                    Limited Seats. Workshop Date:{" "}
+                    {moment(workshopInfo.startDate).format("Do MMM")}
+                  </small>
+                </div>
+              </div>
+            </div> */}
+
+            <div className="input-container">
+              <div className="field-label">Batch {workshopInfo.id}</div>
+              <div className="field-content">
+                <div className="input-wrapper">
+                  <input
+                    type="text"
+                    defaultValue={`₹ ${
+                      workshopInfo?.showGST
+                        ? workshopInfo.amount - totalGST
+                        : workshopInfo.amount
+                    }
+                    `}
+                    className="default-border field-gst"
                     disabled
                   />
                 </div>
@@ -965,5 +1005,19 @@ const PaymentFormContainer = styled("div")`
     .btn-back {
       display: inline-block;
     }
+  }
+`;
+
+const ModalContent = styled.div`
+  width: 400px;
+  height: 400px;
+  background-image: linear-gradient(135deg, #fd6e6a 10%, #ffc600 100%);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h2 {
+    color: #ffffff;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   }
 `;
