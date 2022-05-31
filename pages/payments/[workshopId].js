@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
-import styled from "styled-components";
+import React, { useEffect, useState, useRef } from "react";
 import moment from "moment";
-// import { useRouter } from "next/router";
 import { getWorkshopBatchInfo } from "../../services/apiServices";
 import Razorpay from "../../components/Razorpay";
 import Modal from "../../components/Modal";
+import styles from "../../styles/Payments.module.scss";
+import {
+  WhatsappShareButton,
+  TwitterShareButton,
+  FacebookShareButton,
+} from "react-share";
 
 export async function getServerSideProps({ query }) {
   return {
@@ -13,18 +17,7 @@ export async function getServerSideProps({ query }) {
 }
 
 const Payment = (props) => {
-  // For Mobile Device
-  const [show, setShow] = useState({
-    content: true,
-    paymentForm: false,
-  });
-
-  const handleVisibility = () => {
-    setShow({
-      content: false,
-      paymentForm: true,
-    });
-  };
+  const inputRef = useRef();
 
   const [workshopInfo, setWorkshopInfo] = useState({});
 
@@ -48,23 +41,26 @@ const Payment = (props) => {
   if (!workshopInfo) {
     return (
       <Modal auto={true}>
-        <ModalContent>
+        <div className={styles.modal_content}>
           <h2>Workshops coming soon...</h2>
-        </ModalContent>
+        </div>
       </Modal>
     );
   }
 
   return (
-    <PaymentPageContainer show={show}>
-      <div className="content">
+    <div className={styles.main_container} id="main_content">
+      <div className={styles.content}>
         <Header />
-        <div className="details-view">
+        <div className={styles.details__view}>
           <h1>{workshopInfo.Workshop?.name}</h1>
-          <div className="title-underline" />
+          <div className={styles.title_underline} />
           <h3 style={{ margin: "20px 0" }}>{workshopInfo?.description}</h3>
 
-          <div className="description">
+          <div className={styles.description}>
+            <h4 style={{ margin: "10px 0", fontWeight: "500" }}>
+              Batch {workshopInfo.id}
+            </h4>
             <h4 style={{ margin: "5px 0", fontWeight: "500" }}>
               Date: {moment(workshopInfo.startDate).format("Do MMM")} -{" "}
               {moment(workshopInfo.endDate).format("Do MMM")}{" "}
@@ -83,32 +79,53 @@ const Payment = (props) => {
             {/* <p>Wednesday: Flexible with Recorded Session</p> */}
           </div>
 
-          <div className="notes">
+          <div className={styles.notes}>
             <h3>Important:</h3>
             {workshopInfo.notes?.map((note, index) => (
-              <p key={index} className="note">
+              <p key={index} className={styles.note}>
                 # {note}
               </p>
             ))}
           </div>
         </div>
-        <PaymentForm handle={{ show, setShow }} workshopInfo={workshopInfo} />
 
-        <div className="contact-info">
-          <h5 className="short-heading">Share this on</h5>
-          <div className="social-icons">
-            <button className="social-button">
-              <i className="fb-icon" />
-            </button>
-            <button className="social-button">
-              <i className="twitter-icon" />
-            </button>
-            <button className="social-button">
-              <i className="whatsapp-icon" />
-            </button>
+        <input
+          type="checkbox"
+          style={{ display: "none" }}
+          id={styles.showPayment}
+          ref={inputRef}
+        />
+        <div className={styles.pf}>
+          <PaymentForm workshopInfo={workshopInfo} inputRef={inputRef} />
+        </div>
+        <label htmlFor={styles.showPayment} className={styles.btn_open}>
+          Next
+        </label>
+
+        <div className={styles.contact__info}>
+          <h5 className={styles.short__heading}>Share this on</h5>
+          <div className={styles.social__icons}>
+            <FacebookShareButton
+              url='https://pages.razorpay.com/structures-mini?quote=Checkout "Learn Building Structures easily!" Payment Page built with Razorpay.'
+              hashtag="#razorpay"
+            >
+              <span className={styles.social__button}>
+                <i className={styles.fb__icon} />
+              </span>
+            </FacebookShareButton>
+            <TwitterShareButton url='https://pages.razorpay.com/structures-mini?text=Checkout "Learn Building Structures easily!" Payment Page built with Razorpay.'>
+              <span className={styles.social__button}>
+                <i className={styles.twitter__icon} />
+              </span>
+            </TwitterShareButton>
+            <WhatsappShareButton url='https://pages.razorpay.com/structures-mini?quote=Checkout Checkout "Learn Building Structures easily!" Payment Page built with Razorpay.'>
+              <span className={styles.social__button}>
+                <i className={styles.whatsapp__icon}></i>
+              </span>
+            </WhatsappShareButton>
           </div>
 
-          <h5 className="short-heading">Contact Us</h5>
+          <h5 className={styles.short__heading}>Contact Us</h5>
           <div className="email-and-call">
             <a href="mailto:hola@kaarwan.com">
               <img
@@ -129,8 +146,8 @@ const Payment = (props) => {
             </a>
           </div>
 
-          <h5 className="short-heading">Terms & Conditions</h5>
-          <div className="terms_and_conditions">
+          <h5 className={styles.short__heading}>Terms & Conditions</h5>
+          <div className={styles.terms_and_conditions}>
             <p>
               You agree to share information entered on this page with KAARWAN
               EDUVENTURES PRIVATE LIMITED (owner of this page) and Razorpay,
@@ -138,46 +155,14 @@ const Payment = (props) => {
             </p>
           </div>
         </div>
-
-        {/* Razorpay Footer Details */}
-        {/* <div className="details-footer">
-          <div className="">
-            <img
-              src="https://cdn.razorpay.com/logo.svg"
-              alt="razorpay-logo"
-              width={"120px"}
-            />
-          </div>
-          <p>
-            Want to create page like this for your Business?
-            <a href="">Visit Razorpay Payment Pages to get started!</a>
-          </p>
-          <a href="#">
-            <img
-              src="/static/flag.svg"
-              alt="report-page"
-              style={{ width: "9px", marginRight: "4px" }}
-            />
-            Report Page
-          </a>
-        </div> */}
       </div>
-
-      {/* Show on Mobile Device to Open Payment Form */}
-      {show.content ? (
-        <>
-          <button className="btn-open" onClick={handleVisibility}>
-            Next
-          </button>
-        </>
-      ) : null}
-    </PaymentPageContainer>
+    </div>
   );
 };
 
 export default Payment;
 
-const PaymentForm = ({ handle, workshopInfo }) => {
+const PaymentForm = ({ workshopInfo, inputRef }) => {
   const [payment, setPayment] = useState(false);
   const totalGST = workshopInfo.amount * (18 / 100);
 
@@ -208,9 +193,9 @@ const PaymentForm = ({ handle, workshopInfo }) => {
       ? setError((prevState) => ({ ...prevState, email: true }))
       : setError((prevState) => ({ ...prevState, email: false }));
 
-    paymentData.college === ""
-      ? setError((prevState) => ({ ...prevState, college: true }))
-      : setError((prevState) => ({ ...prevState, college: false }));
+    // paymentData.college === ""
+    //   ? setError((prevState) => ({ ...prevState, college: true }))
+    //   : setError((prevState) => ({ ...prevState, college: false }));
 
     paymentData.mobile === ""
       ? setError((prevState) => ({ ...prevState, mobile: true }))
@@ -237,6 +222,7 @@ const PaymentForm = ({ handle, workshopInfo }) => {
     const name = e.target.name;
     const value = e.target.value;
     setPaymentData((prevData) => ({ ...prevData, [name]: value }));
+    setPayment(false);
   };
 
   const handleInputBlur = (e) => {
@@ -246,114 +232,120 @@ const PaymentForm = ({ handle, workshopInfo }) => {
         ...prevState,
         [name]: false,
       }));
+    setPayment(false);
+  };
+
+  const handleFormVisibility = () => {
+    inputRef.current.checked = false;
   };
 
   return (
-    <PaymentFormContainer show={handle.show.paymentForm}>
-      <div className="title">
-        <button
-          className="btn-back"
-          onClick={() => {
-            handle.setShow({ content: true, paymentForm: false });
-          }}
-        >
+    <div className={styles.payment_form} id="payment_form">
+      <div className={styles.title}>
+        <button className={styles.btn__back} onClick={handleFormVisibility}>
           &#10094;
         </button>{" "}
         Payment Details
-        <div className="title-underline" />
+        <div className={styles.title_underline} />
       </div>
 
-      <div className="form-section">
+      <div className={styles.form__section}>
         <form className="form-UI" noValidate>
-          <div className="input-fields">
+          <div className={styles.input__fields}>
             {/* Name Field */}
-            <div className="input-container">
-              <div className="field-label">Name</div>
-              <div className="field-content">
-                <div className="input-wrapper">
+            <div className={styles.input__container}>
+              <div className={styles.field__label}>Name</div>
+              <div className={styles.field__content}>
+                <div className={styles.input__wrapper}>
                   <input
                     type="text"
                     name="name"
                     id="name"
                     className={`${
-                      error.name ? "border-danger" : "default-border"
+                      error.name
+                        ? styles.border__danger
+                        : styles.default__border
                     } ${paymentData.name && "border-green"}`}
                     onChange={handleInputChange}
                     onBlur={handleInputBlur}
                   />
                 </div>
-                <div className="error-message">
+                <div className={styles.error__message}>
                   {error.name && "This field is required"}
                 </div>
-                <div className="field-description">
+                <div className={styles.field__description}>
                   <small />
                 </div>
               </div>
             </div>
 
             {/* Email Field */}
-            <div className="input-container">
-              <div className="field-label">Email</div>
-              <div className="field-content">
-                <div className="input-wrapper">
+            <div className={styles.input__container}>
+              <div className={styles.field__label}>Email</div>
+              <div className={styles.field__content}>
+                <div className={styles.input__wrapper}>
                   <input
                     type="email"
                     name="email"
                     id="email"
                     className={`${
-                      error.email ? "border-danger" : "default-border"
+                      error.email
+                        ? styles.border__danger
+                        : styles.default__border
                     } ${paymentData.email && "border-green"}`}
                     onChange={handleInputChange}
                     onBlur={handleInputBlur}
                   />
                 </div>
-                <div className="error-message">
+                <div className={styles.error__message}>
                   {error.email &&
                     !paymentData.email &&
                     "This field is required"}
                 </div>
-                <div className="field-description">
+                <div className={styles.field__description}>
                   <small />
                 </div>
               </div>
             </div>
 
             {/* Mobile Field */}
-            <div className="input-container">
-              <div className="field-label">Mobile</div>
-              <div className="field-content">
-                <div className="input-wrapper">
+            <div className={styles.input__container}>
+              <div className={styles.field__label}>Mobile</div>
+              <div className={styles.field__content}>
+                <div className={styles.input__wrapper}>
                   <input
                     type="text"
                     name="mobile"
                     id="mobile"
                     minLength={10}
                     className={`${
-                      error.mobile ? "border-danger" : "default-border"
+                      error.mobile
+                        ? styles.border__danger
+                        : styles.default__border
                     } ${paymentData.mobile && "border-green"}`}
                     onChange={handleInputChange}
                     onBlur={handleInputBlur}
                   />
                 </div>
-                <div className="error-message">
+                <div className={styles.error__message}>
                   {error.mobile && "This field is required"}
                 </div>
-                <div className="field-description">
+                <div className={styles.field__description}>
                   <small />
                 </div>
               </div>
             </div>
 
             {/* I am a --- */}
-            <div className="input-container">
-              <div className="field-label">I am a</div>
-              <div className="field-content">
-                <div className="input-wrapper">
+            <div className={styles.input__container}>
+              <div className={styles.field__label}>I am a</div>
+              <div className={styles.field__content}>
+                <div className={styles.input__wrapper}>
                   <select
                     name="iam"
                     id="iam"
                     className={`${
-                      error.iam ? "border-danger" : "default-border"
+                      error.iam ? styles.border__danger : styles.default__border
                     } ${paymentData.iam && "border-green"}`}
                     onChange={handleInputChange}
                     onBlur={handleInputBlur}
@@ -364,10 +356,10 @@ const PaymentForm = ({ handle, workshopInfo }) => {
                     <option value="professional">Professional</option>
                   </select>
                 </div>
-                <div className="error-message">
+                <div className={styles.error__message}>
                   {error.iam && "This field is required"}
                 </div>
-                <div className="field-description">
+                <div className={styles.field__description}>
                   <small />
                 </div>
               </div>
@@ -376,25 +368,27 @@ const PaymentForm = ({ handle, workshopInfo }) => {
             {/* College Field */}
             {(paymentData.iam === "student" ||
               paymentData.iam === "graduate") && (
-              <div className="input-container">
-                <div className="field-label">College</div>
-                <div className="field-content">
-                  <div className="input-wrapper">
+              <div className={styles.input__container}>
+                <div className={styles.field__label}>College</div>
+                <div className={styles.field__content}>
+                  <div className={styles.input__wrapper}>
                     <input
                       type="text"
                       name="college"
                       id="college"
                       className={`${
-                        error.college ? "border-danger" : "default-border"
+                        error.college
+                          ? styles.border__danger
+                          : styles.default__border
                       } ${paymentData.college && "border-green"}`}
                       onChange={handleInputChange}
                       onBlur={handleInputBlur}
                     />
                   </div>
-                  <div className="error-message">
+                  <div className={styles.error__message}>
                     {error.college && "This field is required"}
                   </div>
-                  <div className="field-description">
+                  <div className={styles.field__description}>
                     <small />
                   </div>
                 </div>
@@ -402,79 +396,53 @@ const PaymentForm = ({ handle, workshopInfo }) => {
             )}
 
             {paymentData.iam === "professional" && (
-              <div className="input-container">
-                <div className="field-label">Company</div>
-                <div className="field-content">
-                  <div className="input-wrapper">
+              <div className={styles.input__container}>
+                <div className={styles.field__label}>Company</div>
+                <div className={styles.field__content}>
+                  <div className={styles.input__wrapper}>
                     <input
                       type="text"
                       name="company"
                       id="company"
                       className={`${
-                        error.company ? "border-danger" : "default-border"
+                        error.company
+                          ? styles.border__danger
+                          : styles.default__border
                       } ${paymentData.company && "border-green"}`}
                       onChange={handleInputChange}
                       onBlur={handleInputBlur}
                     />
                   </div>
-                  <div className="error-message">
+                  <div className={styles.error__message}>
                     {error.company && "This field is required"}
                   </div>
-                  <div className="field-description">
+                  <div className={styles.field__description}>
                     <small />
                   </div>
                 </div>
               </div>
             )}
 
-            {/* Batch No */}
-            {/* <div className="input-container">
-              <div className="field-label">Batch {workshopInfo.id}</div>
-              <div className="field-content">
-                <div className="input-wrapper">
+            <div className={styles.input__container}>
+              <div className={styles.field__label}>Amount </div>
+              <div className={styles.field__content}>
+                <div className={styles.input__wrapper}>
                   <input
                     type="text"
-                    defaultValue={`
-                      ₹ ${
+                    defaultValue={
+                      `₹ ${
                         workshopInfo?.showGST
                           ? workshopInfo.amount - totalGST
                           : workshopInfo.amount
                       }
-                    `}
-                    name="gst"
-                    id="gst"
-                    className="default-border field-batch"
-                    disabled
-                  />
-                </div>
-                <div className="error-message" />
-                <div className="field-description">
-                  <small>
-                    Limited Seats. Workshop Date:{" "}
-                    {moment(workshopInfo.startDate).format("Do MMM")}
-                  </small>
-                </div>
-              </div>
-            </div> */}
-
-            <div className="input-container">
-              <div className="field-label">Batch {workshopInfo.id}</div>
-              <div className="field-content">
-                <div className="input-wrapper">
-                  <input
-                    type="text"
-                    defaultValue={`₹ ${
-                      workshopInfo?.showGST
-                        ? workshopInfo.amount - totalGST
-                        : workshopInfo.amount
+                    ` || ""
                     }
-                    `}
-                    className="default-border field-gst"
+                    className={styles.default__border + " " + styles.field__gst}
                     disabled
                   />
                 </div>
-                <div className="error-message" />
-                <div className="field-description">
+                <div className={styles.error__message} />
+                <div className={styles.field__description}>
                   <small>
                     Limited Seats. Workshop Date:{" "}
                     {moment(workshopInfo.startDate).format("Do MMM")}
@@ -486,19 +454,21 @@ const PaymentForm = ({ handle, workshopInfo }) => {
             {/* GST Field */}
 
             {workshopInfo.showGST && (
-              <div className="input-container">
-                <div className="field-label">GST</div>
-                <div className="field-content">
-                  <div className="input-wrapper">
+              <div className={styles.input__container}>
+                <div className={styles.field__label}>GST</div>
+                <div className={styles.field__content}>
+                  <div className={styles.input__wrapper}>
                     <input
                       type="text"
-                      defaultValue={`₹ ${totalGST}`}
-                      className="default-border field-gst"
+                      defaultValue={`₹ ${totalGST}` || ""}
+                      className={
+                        styles.default__border + " " + styles.field__gst
+                      }
                       disabled
                     />
                   </div>
-                  <div className="error-message" />
-                  <div className="field-description">
+                  <div className={styles.error__message} />
+                  <div className={styles.field__description}>
                     <small>GST @ 18%</small>
                   </div>
                 </div>
@@ -506,15 +476,15 @@ const PaymentForm = ({ handle, workshopInfo }) => {
             )}
           </div>
 
-          <div className="footer">
-            <div className="payment-methods">
+          <div className={styles.footer}>
+            <div className={styles.payment__methods}>
               <img
                 src="https://cdn.razorpay.com/static/assets/pay_methods_branding.png"
                 alt=""
               />
             </div>
             <button
-              className="payment-button"
+              className={styles.payment__button}
               type="submit"
               onClick={handlePayment}
             >
@@ -528,496 +498,22 @@ const PaymentForm = ({ handle, workshopInfo }) => {
       ) : (
         ""
       )}
-    </PaymentFormContainer>
+    </div>
   );
 };
 
-const PaymentPageContainer = styled("div")`
-  position: relative;
-  width: 100%;
-  background-color: #fcfcfc;
-  color: #0d2366;
-  background-position: right;
-  background-size: cover;
-  box-sizing: border-box;
-  overflow-y: ${(props) => (props.show.content ? "auto" : "hidden")};
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p {
-    margin: 0;
-    padding: 0;
-  }
-  overflow-x: hidden;
-  &::before {
-    content: "";
-    position: absolute;
-    border-left: 10px solid #ff6600;
-    left: 0px;
-    height: 100%;
-    margin-bottom: 20px;
-  }
-
-  &::after {
-    content: "";
-    background-image: url("https://cdn.razorpay.com/static/assets/paymentpages/light_desktop.svg");
-    top: 0;
-    position: absolute;
-    right: 0;
-    width: 30%;
-    height: 100%;
-    background-position: right top;
-    background-size: 100% 72.4%;
-    background-repeat: no-repeat;
-    background-color: #efefef;
-  }
-
-  .btn-open {
-    width: calc(100% - 50px);
-    position: fixed;
-    bottom: 5px;
-    margin: 5px;
-    background-color: #ff6600;
-    background-image: linear-gradient(90deg, #ffffff19 0%, #00000019 100%);
-    border: none;
-    color: white;
-    padding: 12px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    text-align: center;
-    display: none;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
-    cursor: pointer;
-  }
-
-  .content {
-    padding-top: 40px;
-    width: 68%;
-    margin: 0 auto;
-    padding-left: 36px;
-    padding-bottom: 20px;
-
-    .notes,
-    .description {
-      h3 {
-        margin-top: 20px;
-        margin-bottom: 8px;
-        font-weight: 500;
-      }
-      p {
-        margin: 0;
-        padding: 0;
-        font-size: 14px;
-        margin-bottom: 4px;
-      }
-    }
-    .details-view {
-      max-width: 420px;
-      margin-top: 20px;
-    }
-    @media screen and (max-width: 680px) {
-      padding-top: 10px;
-    }
-
-    @media screen and (max-width: 1340px) {
-      width: 100%;
-    }
-    .contact-info {
-      /* Social Share Icons */
-      .social-icons {
-        display: flex;
-        gap: 0 12px;
-        .social-button {
-          background-color: transparent;
-          border: none;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 0px;
-          i {
-            display: inline-block;
-            background: url(/static/social-icons.png) no-repeat;
-            overflow: hidden;
-            text-indent: -9999px;
-            text-align: left;
-            width: 40px;
-            height: 40px;
-            -webkit-transform: scale(0.6);
-            transform: scale(0.6);
-            -webkit-transform-origin: left top;
-            transform-origin: left top;
-            margin-bottom: -16px;
-            margin-right: -16px;
-          }
-          .fb-icon {
-            background-position: -2px 0px;
-          }
-          .twitter-icon {
-            background-position: -44px -42px;
-          }
-          .whatsapp-icon {
-            background-position: -2px -84px;
-          }
-        }
-      }
-      .short-heading {
-        line-height: 20px;
-        margin-top: 30px;
-        margin-bottom: 4px;
-      }
-
-      a {
-        text-decoration: none;
-        color: #0d2366;
-        line-height: 25px;
-        font-size: 0.95rem;
-      }
-
-      .terms_and_conditions {
-        width: 45%;
-        p {
-          font-size: 0.9rem;
-          font-weight: 400;
-          color: #162f56bd;
-        }
-        @media screen and (max-width: 680px) {
-          width: 100%;
-        }
-      }
-    }
-
-    .details-footer {
-      width: 45%;
-      margin-top: 20px;
-      box-shadow: 0 -4px 4px -4px rgb(0 0 0 / 18%);
-      padding: 16px 0;
-      box-sizing: border-box;
-      p {
-        font-size: 0.8rem;
-        font-weight: 400;
-        margin: 8px 0;
-        color: #162f56bd;
-        a {
-          color: dodgerblue;
-          font-size: inherit;
-          margin-left: 5px;
-          font-weight: inherit;
-        }
-      }
-      a {
-        color: #536582;
-        font-size: 0.8rem;
-        text-decoration: none;
-        font-weight: 500;
-      }
-    }
-    @media screen and (max-width: 680px) {
-      padding-left: 0;
-      margin: auto auto;
-      .details-footer {
-        width: 100%;
-      }
-    }
-  }
-
-  .title-underline {
-    width: 28px;
-    display: block;
-    margin-top: 20px;
-    border-bottom: 5px solid #ff6600;
-  }
-
-  @media screen and (max-width: 680px) {
-    .content {
-      width: 90%;
-    }
-    &::before {
-      content: "";
-      position: absolute;
-      border-left: 10px solid #ffffff;
-      left: 0px;
-      height: 100vh;
-    }
-    &::after {
-      content: "";
-      background-image: unset;
-      top: unset;
-      position: absolute;
-      right: unset;
-      width: unset;
-      height: unset;
-      background-position: right top;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-color: inherit;
-    }
-  }
-
-  @media screen and (max-width: 1100px) {
-    .content {
-      width: 90%;
-      margin: 0 auto;
-    }
-  }
-  @media screen and (max-width: 680px) {
-    width: 100%;
-    padding-bottom: 50px;
-    height: 100vh;
-
-    .btn-open {
-      display: block;
-    }
-  }
-`;
-
 const Header = () => {
   return (
-    <HeaderContainer>
-      <div className="company-logo">
+    <div className={styles.company_header}>
+      <div className={styles.company__logo}>
         <img
           src="https://cdn.razorpay.com/logos/GPKyOqzis6SPB4_large.jpg"
           alt="company-logo"
         />
       </div>
-      <div className="company-title">KAARWAN EDUVENTURES PRIVATE LIMITED</div>
-    </HeaderContainer>
+      <div className={styles.company__title}>
+        KAARWAN EDUVENTURES PRIVATE LIMITED
+      </div>
+    </div>
   );
 };
-
-const HeaderContainer = styled.div`
-  display: flex;
-  margin: 0 auto;
-  .company-logo {
-    width: 64px;
-    height: 64px;
-    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 18%);
-    padding: 8px;
-    box-sizing: border-box;
-    img {
-      width: 100%;
-    }
-  }
-  .company-title {
-    color: #0d2366;
-    font-weight: bold;
-    line-height: 28px;
-    max-width: 25%;
-    display: inline-block;
-    vertical-align: middle;
-    padding-left: 16px;
-    font-size: 18px;
-    font-weight: 500;
-    @media screen and (max-width: 680px) {
-      max-width: 75%;
-      text-align: center;
-    }
-  }
-  @media screen and (max-width: 680px) {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-`;
-
-const PaymentFormContainer = styled("div")`
-  position: absolute;
-  right: 16%;
-  width: 480px;
-  background-color: #ffffff;
-  box-shadow: 6px 11px 24px 0 rgb(23 31 37 / 12%);
-  z-index: 5;
-  box-sizing: border-box;
-  top: 100px;
-  overflow: hidden;
-  .title {
-    position: relative;
-    color: #30478a;
-    overflow-wrap: break-word;
-    font-weight: 500;
-    font-size: 20px;
-    padding: 30px 32px;
-    line-height: 24px;
-
-    @media screen and (max-width: 680px) {
-      padding: 15px 16px;
-    }
-  }
-
-  .form-section {
-    .input-fields {
-      padding: 30px 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px 0;
-      @media screen and (max-width: 680px) {
-        gap: 10px 0;
-        padding: 15px 16px;
-      }
-    }
-  }
-
-  .btn-back {
-    background-color: transparent;
-    border: none;
-    display: none;
-    margin-left: 0;
-    margin-right: 8px;
-    font-size: 15px;
-    background-color: #00a2ff;
-    padding: 6px 12px;
-    color: white;
-    cursor: pointer;
-  }
-
-  .input-container {
-    display: flex;
-    gap: 0 20px;
-
-    .field-label {
-      width: 120px;
-      font-size: 0.9rem;
-      font-family: "Muli", "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI",
-        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
-        sans-serif;
-    }
-
-    .error-message {
-      font-size: 12px;
-      margin: 4px 0;
-      line-height: 16px;
-      color: #f05050;
-    }
-
-    @media screen and (max-width: 680px) {
-      flex-direction: column;
-      gap: 8px 0;
-    }
-    .field-content {
-      width: 55%;
-
-      @media screen and (max-width: 680px) {
-        width: 90%;
-      }
-      /* Border for Input Error */
-      .border-danger {
-        border: 1px solid #f05050;
-      }
-
-      .border-green {
-        border: 1px solid #86d9a8 !important;
-      }
-
-      /* Default Border Style for Input, Select */
-      .default-border {
-        border: 1px solid #e2e2e2;
-        &:hover {
-          border-color: #bababa;
-        }
-        &:focus {
-          border-color: #00a2ff;
-        }
-      }
-
-      .field-gst,
-      .field-batch {
-        user-select: none;
-        opacity: 0.9;
-        &:hover {
-          border: 1px solid #e2e2e2;
-        }
-      }
-
-      .input-wrapper {
-        width: 100%;
-        input,
-        select {
-          box-sizing: content-box;
-          line-height: 16px;
-          height: 100%;
-          background: #fff;
-          border-radius: 2px;
-          overflow: hidden;
-          font-size: 14px;
-          padding: 6px 9px;
-          outline: none;
-          color: inherit;
-          transition: all 0.1s linear;
-          width: 100%;
-        }
-      }
-    }
-  }
-
-  .footer {
-    display: flex;
-    width: 100%;
-    .payment-methods {
-      background-color: #f5f6f7;
-      min-height: 56px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex: 1;
-      img {
-        width: 180px;
-      }
-    }
-    .payment-button {
-      cursor: pointer;
-      border: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 22px;
-      background-color: rgb(255, 102, 0);
-      color: white;
-      background-image: linear-gradient(90deg, #ffffff19 0%, #00000019 100%);
-    }
-  }
-  @media screen and (max-width: 1100px) {
-    width: 70%;
-    position: static;
-    right: unset;
-    top: unset;
-    z-index: 5;
-  }
-  @media screen and (max-width: 680px) {
-    width: 100%;
-    height: 100vh;
-    overflow-y: scroll;
-    position: fixed;
-    right: 0;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 5;
-    display: ${(props) => (props.show ? "block" : "none")};
-    .footer {
-      flex-direction: column;
-    }
-    .btn-back {
-      display: inline-block;
-    }
-  }
-`;
-
-const ModalContent = styled.div`
-  width: 400px;
-  height: 400px;
-  background-image: linear-gradient(135deg, #fd6e6a 10%, #ffc600 100%);
-  border-radius: 3px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  h2 {
-    color: #ffffff;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  }
-`;

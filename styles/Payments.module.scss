@@ -1,0 +1,494 @@
+.main_container {
+  position: relative;
+  width: 100%;
+  background-color: #fcfcfc;
+  color: #0d2366;
+  background-position: right;
+  background-size: cover;
+  box-sizing: border-box;
+  //   overflow-y: ${(props) => (props.show.content ? "auto" : "hidden")};
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    border-left: 10px solid #ff6600;
+    left: 0px;
+    height: 100%;
+    margin-bottom: 20px;
+  }
+
+  &::after {
+    content: "";
+    background-image: url("https://cdn.razorpay.com/static/assets/paymentpages/light_desktop.svg");
+    top: 0;
+    position: absolute;
+    right: 0;
+    width: 30%;
+    height: 100%;
+    background-position: right top;
+    background-size: 100% 72.4%;
+    background-repeat: no-repeat;
+    background-color: #efefef;
+  }
+
+  .content {
+    padding-top: 40px;
+    width: 68%;
+    margin: 0 auto;
+    padding-left: 36px;
+    padding-bottom: 20px;
+
+    .notes,
+    .description {
+      h3 {
+        margin-top: 20px;
+        margin-bottom: 8px;
+        font-weight: 500;
+      }
+      p {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+        margin-bottom: 4px;
+      }
+    }
+    .details__view {
+      max-width: 420px;
+      margin-top: 20px;
+    }
+    @media screen and (max-width: 680px) {
+      padding-top: 10px;
+    }
+
+    @media screen and (max-width: 1340px) {
+      width: 100%;
+    }
+    .contact__info {
+      /* Social Share Icons */
+      .social__icons {
+        display: flex;
+        gap: 0 12px;
+        .social__button {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0px;
+          i {
+            display: inline-block;
+            background: url(/static/social-icons.png) no-repeat;
+            overflow: hidden;
+            text-indent: -9999px;
+            text-align: left;
+            width: 40px;
+            height: 40px;
+            -webkit-transform: scale(0.6);
+            transform: scale(0.6);
+            -webkit-transform-origin: left top;
+            transform-origin: left top;
+            margin-bottom: -16px;
+            margin-right: -16px;
+          }
+          .fb__icon {
+            background-position: -2px 0px;
+          }
+          .twitter__icon {
+            background-position: -44px -42px;
+          }
+          .whatsapp__icon {
+            background-position: -2px -84px;
+          }
+        }
+      }
+      .short__heading {
+        line-height: 20px;
+        margin-top: 30px;
+        margin-bottom: 4px;
+      }
+
+      a {
+        text-decoration: none;
+        color: #0d2366;
+        line-height: 25px;
+        font-size: 0.95rem;
+      }
+
+      .terms_and_conditions {
+        width: 45%;
+        p {
+          font-size: 0.9rem;
+          font-weight: 400;
+          color: #162f56bd;
+        }
+        @media screen and (max-width: 680px) {
+          width: 100%;
+        }
+      }
+    }
+
+    .details__footer {
+      width: 45%;
+      margin-top: 20px;
+      box-shadow: 0 -4px 4px -4px rgb(0 0 0 / 18%);
+      padding: 16px 0;
+      box-sizing: border-box;
+      p {
+        font-size: 0.8rem;
+        font-weight: 400;
+        margin: 8px 0;
+        color: #162f56bd;
+        a {
+          color: dodgerblue;
+          font-size: inherit;
+          margin-left: 5px;
+          font-weight: inherit;
+        }
+      }
+      a {
+        color: #536582;
+        font-size: 0.8rem;
+        text-decoration: none;
+        font-weight: 500;
+      }
+    }
+    @media screen and (max-width: 680px) {
+      padding-left: 0;
+      margin: auto auto;
+      .details__footer {
+        width: 100%;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1100px) {
+    .content {
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+
+  @media screen and (max-width: 680px) {
+    .content {
+      width: 90%;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      border-left: 10px solid #ffffff;
+      left: 0px;
+      height: 100vh;
+    }
+    &::after {
+      content: "";
+      background-image: unset;
+      top: unset;
+      position: absolute;
+      right: unset;
+      width: unset;
+      height: unset;
+      background-position: right top;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-color: inherit;
+    }
+  }
+
+  //   title underline
+
+  .title_underline {
+    width: 28px;
+    display: block;
+    margin-top: 20px;
+    border-bottom: 5px solid #ff6600;
+  }
+
+  //   Button to open hidden payment on mobile device
+  .btn_open {
+    width: calc(100% - 50px);
+    position: fixed;
+    bottom: 5px;
+    margin: 5px;
+    background-color: #ff6600;
+    background-image: linear-gradient(90deg, #ffffff19 0%, #00000019 100%);
+    border: none;
+    color: white;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+    display: none;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 680px) {
+    width: 100%;
+    padding-bottom: 50px;
+    height: 100vh;
+    .pf {
+      display: none;
+    }
+    #showPayment:checked + .pf {
+      display: block;
+    }
+    .btn_open {
+      display: block;
+    }
+  }
+}
+
+// Company Title and Logo Container -> Header
+.company_header {
+  display: flex;
+  margin: 0 auto;
+  .company__logo {
+    width: 64px;
+    height: 64px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 18%);
+    padding: 8px;
+    box-sizing: border-box;
+    img {
+      width: 100%;
+    }
+  }
+  .company__title {
+    color: #0d2366;
+    font-weight: bold;
+    line-height: 28px;
+    max-width: 25%;
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 16px;
+    font-size: 18px;
+    font-weight: 500;
+    @media screen and (max-width: 680px) {
+      max-width: 75%;
+      text-align: center;
+    }
+  }
+  @media screen and (max-width: 680px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+// No Workshop Modal
+.modal_content {
+  width: 400px;
+  height: 400px;
+  background-image: linear-gradient(135deg, #fd6e6a 10%, #ffc600 100%);
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h2 {
+    color: #ffffff;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+}
+
+// Payment Form Container
+.payment_form {
+  position: absolute;
+  right: 16%;
+  width: 480px;
+  background-color: #ffffff;
+  box-shadow: 6px 11px 24px 0 rgb(23 31 37 / 12%);
+  z-index: 5;
+  box-sizing: border-box;
+  top: 100px;
+  overflow: hidden;
+  display: block;
+
+  .title {
+    position: relative;
+    color: #30478a;
+    overflow-wrap: break-word;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 30px 32px;
+    line-height: 24px;
+
+    @media screen and (max-width: 680px) {
+      padding: 15px 16px;
+    }
+  }
+  .form__section {
+    .input__fields {
+      padding: 30px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px 0;
+      @media screen and (max-width: 680px) {
+        gap: 10px 0;
+        padding: 15px 16px;
+      }
+    }
+  }
+
+  .btn__back {
+    background-color: transparent;
+    border: none;
+    display: none;
+    margin-left: 0;
+    margin-right: 8px;
+    font-size: 15px;
+    background-color: #00a2ff;
+    padding: 6px 12px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .input__container {
+    display: flex;
+    gap: 0 20px;
+
+    .field__label {
+      width: 120px;
+      font-size: 0.9rem;
+      font-family: "Muli", "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+    }
+
+    .error__message {
+      font-size: 12px;
+      margin: 4px 0;
+      line-height: 16px;
+      color: #f05050;
+    }
+
+    @media screen and (max-width: 680px) {
+      flex-direction: column;
+      gap: 8px 0;
+    }
+    .field__content {
+      width: 55%;
+
+      @media screen and (max-width: 680px) {
+        width: 90%;
+      }
+      /* Border for Input Error */
+      .border__danger {
+        border: 1px solid #f05050;
+      }
+
+      .border__green {
+        border: 1px solid #86d9a8 !important;
+      }
+
+      /* Default Border Style for Input, Select */
+      .default__border {
+        border: 1px solid #e2e2e2;
+        &:hover {
+          border-color: #bababa;
+        }
+        &:focus {
+          border-color: #00a2ff;
+        }
+      }
+
+      .field__gst,
+      .field__batch {
+        user-select: none;
+        opacity: 0.9;
+        &:hover {
+          border: 1px solid #e2e2e2;
+        }
+      }
+
+      .input__wrapper {
+        width: 100%;
+        input,
+        select {
+          box-sizing: content-box;
+          line-height: 16px;
+          height: 100%;
+          background: #fff;
+          border-radius: 2px;
+          overflow: hidden;
+          font-size: 14px;
+          padding: 6px 9px;
+          outline: none;
+          color: inherit;
+          transition: all 0.1s linear;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    width: 100%;
+    .payment__methods {
+      background-color: #f5f6f7;
+      min-height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      img {
+        width: 180px;
+      }
+    }
+    .payment__button {
+      cursor: pointer;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+      background-color: rgb(255, 102, 0);
+      color: white;
+      background-image: linear-gradient(90deg, #ffffff19 0%, #00000019 100%);
+    }
+  }
+  @media screen and (max-width: 1100px) {
+    width: 60%;
+    position: static;
+    right: unset;
+    top: unset;
+    z-index: 5;
+    display: block;
+  }
+  @media screen and (max-width: 680px) {
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    position: fixed;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 5;
+    // display: none;
+    .footer {
+      flex-direction: column;
+    }
+    .btn__back {
+      display: inline-block;
+    }
+  }
+}
+
+#showPayment:checked + .payment_form {
+  display: block;
+}
