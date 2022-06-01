@@ -18,7 +18,7 @@ function loadScript(src) {
   });
 }
 
-const Razorpay = ({ paymentInfo }) => {
+const Razorpay = ({ paymentInfo, setSuccess }) => {
   async function displayRazorpay() {
     const res = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
@@ -40,6 +40,9 @@ const Razorpay = ({ paymentInfo }) => {
 
     const user = await addUser(payload);
     console.log(user);
+    if (user.status === 200) {
+      setSuccess((prevState) => ({ ...prevState, userCreated: true }));
+    }
 
     var data = await initiatePayment(payload).then(
       ({ data }) => data.data.order
@@ -57,6 +60,8 @@ const Razorpay = ({ paymentInfo }) => {
         alert(response.razorpay_payment_id);
         alert(response.razorpay_order_id);
         alert(response.razorpay_signature);
+        setSuccess((prevState) => ({ ...prevState, payment: true }));
+        window.location.href = "http://54.82.90.27/";
       },
       prefill: {
         name: paymentInfo.name,

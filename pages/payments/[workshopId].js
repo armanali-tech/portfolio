@@ -10,6 +10,8 @@ import {
   FacebookShareButton,
 } from "react-share";
 
+import validator from "validator";
+
 export async function getServerSideProps({ query }) {
   return {
     props: query, // will be passed to props
@@ -20,6 +22,10 @@ const Payment = (props) => {
   const inputRef = useRef();
 
   const [workshopInfo, setWorkshopInfo] = useState({});
+  const [success, setSuccess] = useState({
+    userCreated: false,
+    payment: false,
+  });
 
   const { workshopId } = props;
 
@@ -59,7 +65,7 @@ const Payment = (props) => {
 
           <div className={styles.description}>
             <h4 style={{ margin: "10px 0", fontWeight: "500" }}>
-              Batch {workshopInfo.id}
+              Batch {workshopInfo.batchNo || ""}
             </h4>
             <h4 style={{ margin: "5px 0", fontWeight: "500" }}>
               Date: {moment(workshopInfo.startDate).format("Do MMM")} -{" "}
@@ -83,7 +89,7 @@ const Payment = (props) => {
             <h3>Important:</h3>
             {workshopInfo.notes?.map((note, index) => (
               <p key={index} className={styles.note}>
-                # {note}
+                {note}
               </p>
             ))}
           </div>
@@ -96,7 +102,21 @@ const Payment = (props) => {
           ref={inputRef}
         />
         <div className={styles.pf}>
-          <PaymentForm workshopInfo={workshopInfo} inputRef={inputRef} />
+          {success.payment ? (
+            <div
+              className={`${
+                styles.payment_form + " " + styles.payment_success
+              }`}
+            >
+              Success
+            </div>
+          ) : (
+            <PaymentForm
+              workshopInfo={workshopInfo}
+              inputRef={inputRef}
+              setSuccess={setSuccess}
+            />
+          )}
         </div>
         <label htmlFor={styles.showPayment} className={styles.btn_open}>
           Next
@@ -162,7 +182,7 @@ const Payment = (props) => {
 
 export default Payment;
 
-const PaymentForm = ({ workshopInfo, inputRef }) => {
+const PaymentForm = ({ workshopInfo, inputRef, setSuccess }) => {
   const [payment, setPayment] = useState(false);
   const totalGST = workshopInfo.amount * (18 / 100);
 
@@ -183,6 +203,11 @@ const PaymentForm = ({ workshopInfo, inputRef }) => {
     iam: false,
   });
 
+  const [validationError, setValidationError] = useState({
+    email: false,
+    mobile: false,
+  });
+
   const handlePayment = (e) => {
     e.preventDefault();
     paymentData.name === ""
@@ -193,10 +218,6 @@ const PaymentForm = ({ workshopInfo, inputRef }) => {
       ? setError((prevState) => ({ ...prevState, email: true }))
       : setError((prevState) => ({ ...prevState, email: false }));
 
-    // paymentData.college === ""
-    //   ? setError((prevState) => ({ ...prevState, college: true }))
-    //   : setError((prevState) => ({ ...prevState, college: false }));
-
     paymentData.mobile === ""
       ? setError((prevState) => ({ ...prevState, mobile: true }))
       : setError((prevState) => ({ ...prevState, mobile: false }));
@@ -204,13 +225,6 @@ const PaymentForm = ({ workshopInfo, inputRef }) => {
     paymentData.iam === ""
       ? setError((prevState) => ({ ...prevState, iam: true }))
       : setError((prevState) => ({ ...prevState, iam: false }));
-
-    if (paymentData.iam === "student" || paymentData.iam === "graduate") {
-      delete paymentData.company;
-    }
-    if (paymentData.iam === "professional") {
-      delete paymentData.college;
-    }
 
     if (paymentData.email && paymentData.email && paymentData.mobile) {
       setPayment(true);
@@ -222,21 +236,42 @@ const PaymentForm = ({ workshopInfo, inputRef }) => {
     const name = e.target.name;
     const value = e.target.value;
     setPaymentData((prevData) => ({ ...prevData, [name]: value }));
+    if (name === "email") {
+      const isValid = validator.isEmail(value);
+
+      setValidationError((prevState) => ({
+        ...prevState,
+        email: !isValid ? true : false,
+      }));
+    }
+    if (name === "mobile") {
+      const isValid = validator.isMobilePhone(value, "en-IN");
+
+      setValidationError((prevState) => ({
+        ...prevState,
+        mobile: !isValid ? true : false,
+      }));
+    }
     setPayment(false);
   };
 
   const handleInputBlur = (e) => {
-    const name = e.target.name;
+    const { name, value } = e.target;
     e.target.value &&
       setError((prevState) => ({
         ...prevState,
         [name]: false,
       }));
+
     setPayment(false);
   };
 
   const handleFormVisibility = () => {
     inputRef.current.checked = false;
+  };
+
+  const handlePaymentReset = () => {
+    setPayment(false);
   };
 
   return (
@@ -302,6 +337,10 @@ const PaymentForm = ({ workshopInfo, inputRef }) => {
                     !paymentData.email &&
                     "This field is required"}
                 </div>
+                <div className={styles.error__message}>
+                  {validationError.email && "Invalid email address"}
+                </div>
+
                 <div className={styles.field__description}>
                   <small />
                 </div>
@@ -329,6 +368,9 @@ const PaymentForm = ({ workshopInfo, inputRef }) => {
                 </div>
                 <div className={styles.error__message}>
                   {error.mobile && "This field is required"}
+                </div>
+                <div className={styles.error__message}>
+                  {validationError.mobile && "Invalid mobile number"}
                 </div>
                 <div className={styles.field__description}>
                   <small />
@@ -376,6 +418,7 @@ const PaymentForm = ({ workshopInfo, inputRef }) => {
                       type="text"
                       name="college"
                       id="college"
+                      value={paymentData.college}
                       className={`${
                         error.college
                           ? styles.border__danger
@@ -404,6 +447,7 @@ const PaymentForm = ({ workshopInfo, inputRef }) => {
                       type="text"
                       name="company"
                       id="company"
+                      value={paymentData.company}
                       className={`${
                         error.company
                           ? styles.border__danger
@@ -487,6 +531,7 @@ const PaymentForm = ({ workshopInfo, inputRef }) => {
               className={styles.payment__button}
               type="submit"
               onClick={handlePayment}
+              onMouseOver={handlePaymentReset}
             >
               Pay ₹ {workshopInfo.amount}
             </button>
@@ -494,7 +539,10 @@ const PaymentForm = ({ workshopInfo, inputRef }) => {
         </form>
       </div>
       {payment ? (
-        <Razorpay paymentInfo={{ ...paymentData, ...workshopInfo }} />
+        <Razorpay
+          paymentInfo={{ ...paymentData, ...workshopInfo }}
+          setSuccess={setSuccess}
+        />
       ) : (
         ""
       )}
