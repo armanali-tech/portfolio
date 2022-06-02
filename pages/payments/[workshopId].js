@@ -112,7 +112,7 @@ const Payment = (props) => {
             </div>
           ) : (
             <PaymentForm
-              workshopInfo={workshopInfo}
+              workshopInfo={{ ...workshopInfo, ...workshopId }}
               inputRef={inputRef}
               setSuccess={setSuccess}
             />

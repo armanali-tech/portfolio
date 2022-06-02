@@ -36,6 +36,7 @@ const Razorpay = ({ paymentInfo, setSuccess }) => {
       college: paymentInfo.college,
       amount: paymentInfo.amount,
       batchId: paymentInfo.id,
+      workshopId: paymentInfo.workshopId,
     };
 
     const user = await addUser(payload);
