@@ -57,11 +57,19 @@ const Razorpay = ({ paymentInfo, setSuccess }) => {
       description: paymentInfo?.Workshop?.name,
       image: "https://cdn.razorpay.com/logos/GPKyOqzis6SPB4_large.jpg",
       handler: function (response) {
-        alert(response.razorpay_payment_id);
-        alert(response.razorpay_order_id);
-        alert(response.razorpay_signature);
-        setSuccess((prevState) => ({ ...prevState, payment: true }));
-        window.location.href = "http://54.82.90.27/";
+        // alert(response.razorpay_payment_id);
+        // alert(response.razorpay_order_id);
+        // alert(response.razorpay_signature);
+        window.location.href =
+          window.location.origin +
+          "/payments/success/" +
+          response.razorpay_order_id;
+
+        setSuccess((prevState) => ({
+          ...prevState,
+          payment: true,
+          order_id: response.razorpay_order_id,
+        }));
       },
       prefill: {
         name: paymentInfo.name,
