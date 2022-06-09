@@ -119,7 +119,7 @@ const success = ({ orderDetail }) => {
               />{" "}
               hola@kaarwan.com
             </a>
-            <a href="tel:9833777469">
+            <a href="tel:9833777469" className={styles.company_mobile}>
               <img
                 src="/static/phone_2.svg"
                 alt="workshop schedule"
