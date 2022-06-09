@@ -36,10 +36,10 @@ const Razorpay = ({ paymentInfo, setSuccess }) => {
       college: paymentInfo.college,
       amount: paymentInfo.amount,
       batchId: paymentInfo.id,
+      workshopId: paymentInfo.workshopId,
     };
 
     const user = await addUser(payload);
-    console.log(user);
     if (user.status === 200) {
       setSuccess((prevState) => ({ ...prevState, userCreated: true }));
     }
@@ -47,19 +47,20 @@ const Razorpay = ({ paymentInfo, setSuccess }) => {
     var data = await initiatePayment(payload).then(
       ({ data }) => data.data.order
     );
-
     const options = {
-      key: process.env.RAZORPAY_ID_TEST,
+      key: process.env.RAZORPAY_ID,
       currency: "INR",
       amount: paymentInfo.amount.toString(),
       order_id: data?.rzpOrderId,
       name: "KAARWAN EDUVENTURES PVT LTD",
       description: paymentInfo?.Workshop?.name,
       image: "https://cdn.razorpay.com/logos/GPKyOqzis6SPB4_large.jpg",
+      headers: { "Content-Type": "application/json" },
       handler: function (response) {
         // alert(response.razorpay_payment_id);
         // alert(response.razorpay_order_id);
         // alert(response.razorpay_signature);
+        setSuccess((prevState) => ({ ...prevState, payment: true }));
         window.location.href =
           window.location.origin +
           "/payments/success/" +
