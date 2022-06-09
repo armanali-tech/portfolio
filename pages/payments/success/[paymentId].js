@@ -37,7 +37,10 @@ const success = ({ orderDetail }) => {
       <div className={styles.details}>
         <div className={styles.left_content}>
           <div className={styles.workshop_details}>
-            <p className={styles.workshop_name}>{order.Workshop?.name}</p>
+            <p className={styles.workshop_name}>
+              {/* Advance Parametric & Computational Design in Rhino for Architects */}
+              {order.Workshop?.name}
+            </p>
             <p className={styles.short_bar}></p>
             <p className={styles.workshop_date}>
               <span>

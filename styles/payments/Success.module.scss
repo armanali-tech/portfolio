@@ -45,7 +45,7 @@
   .success {
     // width: 82.5%;
     display: flex;
-    gap: 0 82px;
+    gap: 0 95px;
     margin: 0 auto;
     margin-top: 89.99px;
     align-items: center;
@@ -78,7 +78,7 @@
 // Payment details Container
 
 .details {
-  width: 70%;
+  width: 68.5%;
   margin: 0 auto;
   display: flex;
   margin-top: 48px;
@@ -109,10 +109,13 @@
     }
 
     .workshop_details {
+      min-height: 182px;
       box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.1);
       padding: 24px;
       border-radius: 8px;
+      box-sizing: border-box;
       @media screen and (max-width: 720px) {
+        min-height: 166px;
         padding: 20px;
       }
     }
@@ -124,6 +127,7 @@
       border-radius: 3px;
       margin-top: 12px;
       margin-left: 4px;
+      margin-bottom: 12px;
     }
 
     .workshop_name {
@@ -152,6 +156,10 @@
         gap: 8px 0;
       }
       span {
+        margin: 4px 0;
+        @media screen and (max-width: 720px) {
+          margin: 0px;
+        }
         &:first-child {
           display: flex;
           align-items: center;
@@ -192,9 +200,10 @@
       background: #fff7f2;
       border-radius: 8px;
       padding: 24px;
-
+      height: 182px;
+      box-sizing: border-box;
       @media screen and (max-width: 720px) {
-        font-size: 16px;
+        height: 166px;
         padding: 16px;
         margin: 0 auto;
         margin-top: 40px;
@@ -209,7 +218,8 @@
           color: #2f2f2fb2;
           text-indent: -1.2em;
           padding-left: 24px;
-          word-spacing: 5px;
+          line-height: 21px;
+          word-spacing: 2px;
           @media screen and (max-width: 720px) {
             font-size: 14px;
           }
@@ -235,7 +245,6 @@
         gap: 0 4px;
         display: flex;
         align-items: center;
-        // font-weight: 600;
         font-size: 20.3px;
         line-height: 30px;
         @media screen and (max-width: 720px) {
@@ -247,7 +256,6 @@
         list-style: 30px;
       }
 
-      // font-size: 18px;
       @media screen and (max-width: 720px) {
         margin-top: 5px;
         flex-direction: column;
