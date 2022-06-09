@@ -47,7 +47,7 @@ const Payment = (props) => {
 
   if (!workshopInfo) {
     setTimeout(() => {
-      window.location.href = window.location.origin;
+      window.location.href = "https://www.kaarwan.com";
     }, 4000);
     return (
       <Modal auto={true}>

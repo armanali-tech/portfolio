@@ -49,8 +49,6 @@ const success = ({ orderDetail }) => {
                   alt="workshop schedule"
                   className={styles.icon_clock}
                 />{" "}
-                {/* {order.Batch.BatchSchedules[0].startTime} -{" "}
-                {order.Batch.BatchSchedules[0].endTime} */}
                 {moment(
                   new Date(
                     "2022-12-12T" + order.Batch.BatchSchedules[0].startTime
@@ -92,7 +90,7 @@ const success = ({ orderDetail }) => {
               </a>
             )}
 
-            <Link href="/">
+            <Link href="https://www.kaarwan.com">
               <a className={styles.btn_back}>Go back to home</a>
             </Link>
           </div>
@@ -113,7 +111,7 @@ const success = ({ orderDetail }) => {
           </div>
 
           <div className={styles.contact_details}>
-            <a href="mailto:hola@kaarwan.com" className={styles.user_email}>
+            <a href="mailto:hola@kaarwan.com" className={styles.company_email}>
               <img
                 src="/static/mail_gray.svg"
                 alt="workshop schedule"
