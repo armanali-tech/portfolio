@@ -61,7 +61,16 @@ const Razorpay = ({ paymentInfo, setSuccess }) => {
         // alert(response.razorpay_order_id);
         // alert(response.razorpay_signature);
         setSuccess((prevState) => ({ ...prevState, payment: true }));
-        window.location.href = "https://www.kaarwan.com/index.php";
+        window.location.href =
+          window.location.origin +
+          "/payments/success/" +
+          response.razorpay_order_id;
+
+        setSuccess((prevState) => ({
+          ...prevState,
+          payment: true,
+          order_id: response.razorpay_order_id,
+        }));
       },
       prefill: {
         name: paymentInfo.name,

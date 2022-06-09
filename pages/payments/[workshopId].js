@@ -3,7 +3,7 @@ import moment from "moment";
 import { getWorkshopBatchInfo } from "../../services/apiServices";
 import Razorpay from "../../components/Razorpay";
 import Modal from "../../components/Modal";
-import styles from "../../styles/Payments.module.scss";
+import styles from "../../styles/payments/Payments.module.scss";
 import {
   WhatsappShareButton,
   TwitterShareButton,
@@ -25,6 +25,7 @@ const Payment = (props) => {
   const [success, setSuccess] = useState({
     userCreated: false,
     payment: false,
+    orderId: "",
   });
 
   const { workshopId } = props;
@@ -45,6 +46,9 @@ const Payment = (props) => {
   }, []);
 
   if (!workshopInfo) {
+    setTimeout(() => {
+      window.location.href = window.location.origin;
+    }, 4000);
     return (
       <Modal auto={true}>
         <div className={styles.modal_content}>
@@ -101,23 +105,11 @@ const Payment = (props) => {
           id={styles.showPayment}
           ref={inputRef}
         />
-        <div className={styles.pf}>
-          {success.payment ? (
-            <div
-              className={`${
-                styles.payment_form + " " + styles.payment_success
-              }`}
-            >
-              Success
-            </div>
-          ) : (
-            <PaymentForm
-              workshopInfo={{ ...workshopInfo, ...workshopId }}
-              inputRef={inputRef}
-              setSuccess={setSuccess}
-            />
-          )}
-        </div>
+        <PaymentForm
+          workshopInfo={workshopInfo}
+          inputRef={inputRef}
+          setSuccess={setSuccess}
+        />
         <label htmlFor={styles.showPayment} className={styles.btn_open}>
           Next
         </label>

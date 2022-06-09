@@ -12,3 +12,7 @@ export function initiatePayment(data) {
 export function addUser(data) {
   return http.post(`/api/payment/add-user`, data);
 }
+
+export function getOrderDetail(id) {
+  return http.get(`/api/order/${id}/success`);
+}
