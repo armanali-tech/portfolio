@@ -203,13 +203,16 @@
       box-sizing: border-box;
       @media screen and (max-width: 720px) {
         height: 166px;
-        padding: 16px;
         margin: 0 auto;
+        padding-bottom: 4px;
         margin-top: 40px;
       }
       ul {
         padding: 24px;
         list-style-type: none;
+        @media screen and (max-width: 720px) {
+          padding: 16px;
+        }
         li {
           font-family: "Open Sans", Roboto;
           margin-bottom: 15px;
@@ -222,6 +225,7 @@
           line-height: 21px;
           @media screen and (max-width: 720px) {
             font-size: 14px;
+            // line-height: 18px;
           }
           &::before {
             content: "";
