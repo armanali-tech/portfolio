@@ -47,7 +47,8 @@ const Payment = (props) => {
 
   if (!workshopInfo) {
     setTimeout(() => {
-      window.location.href = "https://www.kaarwan.com";
+      window.location.href =
+        "http://www.kaarwan.com/architecture-design-workshops.php";
     }, 4000);
     return (
       <Modal auto={true}>
