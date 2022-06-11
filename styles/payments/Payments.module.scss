@@ -218,7 +218,8 @@
 
   //   Button to open hidden payment on mobile device
   .btn_open {
-    width: calc(100% - 50px);
+    z-index: 2;
+    width: calc(100% - 60px);
     position: fixed;
     bottom: 5px;
     margin: 5px;
