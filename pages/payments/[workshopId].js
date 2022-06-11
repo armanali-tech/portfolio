@@ -106,11 +106,13 @@ const Payment = (props) => {
           id={styles.showPayment}
           ref={inputRef}
         />
-        <PaymentForm
-          workshopInfo={workshopInfo}
-          inputRef={inputRef}
-          setSuccess={setSuccess}
-        />
+        <div className={styles.pf}>
+          <PaymentForm
+            workshopInfo={workshopInfo}
+            inputRef={inputRef}
+            setSuccess={setSuccess}
+          />
+        </div>
         <label htmlFor={styles.showPayment} className={styles.btn_open}>
           Next
         </label>
@@ -238,12 +240,17 @@ const PaymentForm = ({ workshopInfo, inputRef, setSuccess }) => {
       }));
     }
     if (name === "mobile") {
-      const isValid = validator.isMobilePhone(value, "en-IN");
-
-      setValidationError((prevState) => ({
-        ...prevState,
-        mobile: !isValid ? true : false,
-      }));
+      if (String(value).length < 10 || value === "") {
+        setValidationError((prevState) => ({
+          ...prevState,
+          mobile: true,
+        }));
+      } else {
+        setValidationError((prevState) => ({
+          ...prevState,
+          mobile: false,
+        }));
+      }
     }
     setPayment(false);
   };
@@ -346,10 +353,11 @@ const PaymentForm = ({ workshopInfo, inputRef, setSuccess }) => {
               <div className={styles.field__content}>
                 <div className={styles.input__wrapper}>
                   <input
-                    type="text"
+                    type="number"
                     name="mobile"
                     id="mobile"
                     minLength={10}
+                    maxLength={10}
                     className={`${
                       error.mobile
                         ? styles.border__danger
@@ -469,7 +477,12 @@ const PaymentForm = ({ workshopInfo, inputRef, setSuccess }) => {
                     defaultValue={
                       `₹ ${
                         workshopInfo?.showGST
-                          ? workshopInfo.amount - totalGST
+                          ? Math.round(
+                              (workshopInfo.amount -
+                                totalGST +
+                                Number.EPSILON) *
+                                100
+                            ) / 100
                           : workshopInfo.amount
                       }
                     ` || ""
