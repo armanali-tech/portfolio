@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaTwitter, FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
 import Typical from "react-typical";
 import ParticlesBg from "particles-bg";
@@ -6,9 +6,6 @@ import portrait from "../assets/img/portrait.jpg";
 import About from "./about";
 import Work from "./work";
 import Contact from "./contact";
-import "../assets/styles.scss";
-
-// const element =
 
 const MyProfile = (props) => {
   // Set initial state of menu
@@ -90,7 +87,9 @@ const MyProfile = (props) => {
       hideMenu();
       return (bgImg.style.background = "none");
     } else {
-      window.location.reload();
+      if (typeof window === "undefined") {
+        return window.location.reload();
+      }
     }
   };
 
