@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import portrait from "../assets/img/portrait.jpg";
+import portrait from "../assets/img/arman.jpg";
 
 const Navbar = () => {
   const router = useRouter();
@@ -51,8 +51,7 @@ const Navbar = () => {
       <nav className="menu">
         <div className="menu-branding">
           <div className="portrait">
-            {" "}
-            <Image className="portrait-img" src={portrait} alt="Arman" />
+            <Image className="portrait-img" src={portrait} />
           </div>
         </div>
         <ul className="menu-nav">

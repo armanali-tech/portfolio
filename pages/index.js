@@ -4,12 +4,8 @@ import { getReposAsync } from "../utils/features/repoSearch/repoSearchSlice";
 import dynamic from "next/dynamic";
 
 const IndexPage = () => {
-  const Home = dynamic(() => import("./portfolio"), { ssr: false });
-  return (
-    <>
-      <Home />
-    </>
-  );
+  const Home = dynamic(() => import("./home"), { ssr: false });
+  return <Home />;
 };
 
 export async function getStaticProps() {
