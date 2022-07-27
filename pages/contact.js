@@ -1,9 +1,10 @@
 import React from "react";
-// import '../assets/styles.scss';
+import Navbar from "../components/navbar";
 
 const AboutMe = (props) => {
   return (
     <div>
+      <Navbar />
       <main id="contact">
         <h1 className="lg-heading">
           Contact <span className="text-secondary">Me </span>

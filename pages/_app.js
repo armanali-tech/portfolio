@@ -2,8 +2,8 @@ import React, { useEffect } from "react";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { Helmet } from "react-helmet";
 import { Provider } from "react-redux";
-import styledNormalize from "styled-normalize";
 import { useStore } from "../utils/store";
+import styledNormalize from "styled-normalize";
 import Layout from "../components/layout";
 import theme from "../utils/features/theme";
 import "../styles/css/global.css";
@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`${styledNormalize}`;
 export default function MyApp(props) {
   const { Component, pageProps } = props;
   const store = useStore(pageProps.state);
-  const title = "Profile";
+  const title = "Arman";
 
   return (
     <>

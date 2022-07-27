@@ -1,10 +1,11 @@
 import React from "react";
-// import '../assets/styles.scss';
 import portrait from "../assets/img/system.jpg";
+import Navbar from "../components/navbar";
 
 const AboutMe = (props) => {
   return (
     <div>
+      <Navbar />
       <main id="about">
         <h1 className="lg-heading">
           About <span className="text-secondary">Me </span>

@@ -1,16 +1,13 @@
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
+import React from "react";
 import { createStore } from "../utils/store";
 import { getReposAsync } from "../utils/features/repoSearch/repoSearchSlice";
 import dynamic from "next/dynamic";
 
 const IndexPage = () => {
   const Home = dynamic(() => import("./portfolio"), { ssr: false });
-  const router = useRouter();
   return (
     <>
       <Home />
-      {/* <div onClick={() => router.push("/about")}> </div> */}
     </>
   );
 };

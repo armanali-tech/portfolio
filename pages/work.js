@@ -9,6 +9,8 @@ import pocket from "../assets/img/projects/pocket.png";
 import profile from "../assets/img/projects/profile.png";
 import plancess from "../assets/img/projects/plancess.png";
 import cross from "../assets/img/projects/cross.svg";
+import Navbar from "../components/navbar";
+import Image from "next/image";
 
 import Modal from "react-modal";
 
@@ -57,10 +59,10 @@ const Work = (props) => {
       >
         <div className="modal-area">
           <button className="close-btn" onClick={() => setModalOpen(false)}>
-            <img className="close-cross" src={cross} alt="no" />
+            <Image className="close-cross" src={cross} alt="no" />
           </button>
           <div>
-            <img
+            <Image
               className="selective-img"
               src={img}
               // onClick={() => setModalOpen(false)}
@@ -74,6 +76,7 @@ const Work = (props) => {
 
   return (
     <div>
+      <Navbar />
       <main id="work">
         <h1 className="lg-heading">
           My <span className="text-secondary"> Work </span>
@@ -82,7 +85,7 @@ const Work = (props) => {
         <div className="projects">
           <div className="item">
             <span>
-              <img
+              <Image
                 src={admin}
                 alt="Projects"
                 onClick={() => {
@@ -100,7 +103,7 @@ const Work = (props) => {
           </div>
           <div className="item">
             <span>
-              <img
+              <Image
                 src={expertrons}
                 alt="Projects"
                 onClick={() => {
@@ -123,7 +126,7 @@ const Work = (props) => {
           </div>
           <div className="item">
             <span>
-              <img
+              <Image
                 src={explogin}
                 alt="Projects"
                 onClick={() => {
@@ -146,7 +149,7 @@ const Work = (props) => {
           </div>
           <div className="item">
             <span>
-              <img
+              <Image
                 src={mentor}
                 alt="Projects"
                 onClick={() => {
@@ -169,7 +172,7 @@ const Work = (props) => {
           </div>
           <div className="item">
             <span>
-              <img
+              <Image
                 src={lobby}
                 alt="Projects"
                 onClick={() => {
@@ -192,7 +195,7 @@ const Work = (props) => {
           </div>
           <div className="item">
             <span>
-              <img
+              <Image
                 src={pocket}
                 alt="Projects"
                 onClick={() => {
@@ -215,7 +218,7 @@ const Work = (props) => {
           </div>
           <div className="item">
             <span>
-              <img
+              <Image
                 src={profile}
                 alt="Projects"
                 onClick={() => {
@@ -238,7 +241,7 @@ const Work = (props) => {
           </div>
           <div className="item">
             <span>
-              <img
+              <Image
                 src={plancess}
                 alt="Projects"
                 onClick={() => {
