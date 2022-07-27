@@ -15,25 +15,6 @@ export default function MyApp(props) {
   const store = useStore(pageProps.state);
   const title = "Profile";
 
-  function loadScript(src) {
-    // script to solve windows not defined issue
-    return new Promise((resolve) => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.onload = () => {
-        resolve(true);
-      };
-      script.onerror = () => {
-        resolve(false);
-      };
-      document.body.appendChild(script);
-    });
-  }
-
-  useEffect(() => {
-    loadScript;
-  }, []);
-
   return (
     <>
       <Helmet>

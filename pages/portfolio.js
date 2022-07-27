@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useRouter } from "next/router";
 import { FaTwitter, FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
 import Typical from "react-typical";
 import ParticlesBg from "particles-bg";
@@ -7,7 +8,8 @@ import About from "./about";
 import Work from "./work";
 import Contact from "./contact";
 
-const MyProfile = (props) => {
+const MyProfile = () => {
+  const router = useRouter();
   // Set initial state of menu
   const [showMenu, setShowMenu] = useState(false);
   const [showHome, setShowHome] = useState(true);
@@ -48,51 +50,6 @@ const MyProfile = (props) => {
     setTimeout(hideMenu, 10000);
   }
 
-  const handleRedirect = (val) => {
-    let value = val;
-    // Select DOM Items
-    const menuBtn = document.querySelector(".menu-btn");
-    const menu = document.querySelector(".menu");
-    const menuNav = document.querySelector(".menu-nav");
-    const menuBranding = document.querySelector(".menu-branding");
-    const navItem = document.querySelectorAll(".nav-item");
-    const bgImg = document.getElementById("bg-img");
-
-    function hideMenu() {
-      menuBtn.classList.remove("close");
-      menu.classList.remove("show");
-      menuNav.classList.remove("show");
-      menuBranding.classList.remove("show");
-      navItem.forEach((item) => item.classList.add("show"));
-
-      // Set Menu Sate
-      setShowMenu(false);
-    }
-    setShowHome(false);
-
-    if (value === "A") {
-      setShowAbout(true);
-      hideMenu();
-      return (bgImg.style.background = "none");
-    } else if (value === "W") {
-      setShowAbout(false);
-      setShowContact(false);
-      setShowWork(true);
-      hideMenu();
-      return (bgImg.style.background = "none");
-    } else if (value === "C") {
-      setShowAbout(false);
-      setShowWork(false);
-      setShowContact(true);
-      hideMenu();
-      return (bgImg.style.background = "none");
-    } else {
-      if (typeof window === "undefined") {
-        return window.location.reload();
-      }
-    }
-  };
-
   return (
     <div id="bg-img">
       <header>
@@ -111,17 +68,17 @@ const MyProfile = (props) => {
           <ul className="menu-nav">
             <li
               className="nav-item current"
-              onClick={() => handleRedirect("H")}
+              onClick={() => router.push("/portfolio")}
             >
               <span className="nav-link">Home</span>
             </li>
-            <li className="nav-item" onClick={() => handleRedirect("A")}>
+            <li className="nav-item" onClick={() => router.push("/about")}>
               <span className="nav-link">About Me</span>
             </li>
-            <li className="nav-item" onClick={() => handleRedirect("W")}>
+            <li className="nav-item" onClick={() => router.push("/work")}>
               <span className="nav-link">My Work</span>
             </li>
-            <li className="nav-item" onClick={() => handleRedirect("C")}>
+            <li className="nav-item" onClick={() => router.push("/contact")}>
               <span className="nav-link">Contact</span>
             </li>
           </ul>
