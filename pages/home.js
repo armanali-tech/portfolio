@@ -1,10 +1,19 @@
 import React from "react";
-import { FaTwitter, FaFacebook, FaLinkedin, FaGithub } from "react-icons/fa";
+import { useRouter } from "next/router";
+import {
+  FaTwitter,
+  FaFacebook,
+  FaLinkedin,
+  FaGithub,
+  FaArrowCircleRight,
+} from "react-icons/fa";
 import Typical from "react-typical";
 import ParticlesBg from "particles-bg";
 import Navbar from "../components/navbar";
 
 const MyProfile = () => {
+  const router = useRouter();
+
   return (
     <div id="bg-img">
       <Navbar />
@@ -16,24 +25,21 @@ const MyProfile = () => {
           <span className="text-secondary">I'm</span> Arman Ali
           <span className="text-secondary">.</span>
         </h1>
-        <h2 className="sm-heading">
+        <h3 className="sm-heading">
           <Typical
             steps={[
-              "Full Stack Developer * * * ",
+              "Full Stack Developer ***",
               2000,
-              "MERN Stack Developer * * *",
+              "MERN Stack Developer ***",
               2000,
             ]}
             loop={Infinity}
             wrapper="p"
+            style={{ marginBottom: 0 }}
           />
-        </h2>
+        </h3>
         <div className="icons">
-          <a
-            href="https://twitter.com/CooldudeX18"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href="https://twitter.com/CooldudeX18" target="_blank">
             <FaTwitter className="fa-2x" />
           </a>
           <span href="/#">
@@ -42,7 +48,6 @@ const MyProfile = () => {
           <a
             href="https://www.linkedin.com/in/arman-ali-15a098208/"
             target="_blank"
-            rel="noreferrer"
           >
             <FaLinkedin className="fa-2x" />
           </a>
@@ -50,11 +55,17 @@ const MyProfile = () => {
             <FaGithub className="fa-2x" />
           </span>
         </div>
+        <div className="work-btn">
+          <button
+            className="form-button"
+            type="button"
+            onClick={() => router.push("/work")}
+          >
+            View my work <FaArrowCircleRight className="fa-1x" />
+          </button>
+        </div>
       </main>
       <ParticlesBg color="#000000" type="cobweb" bg={true} />
-      <footer id="main-footer">
-        Let’s make something special. Copyright &copy; 2022.
-      </footer>
     </div>
   );
 };

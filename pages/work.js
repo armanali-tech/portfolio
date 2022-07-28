@@ -11,10 +11,10 @@ import plancess from "../assets/img/projects/plancess.png";
 import cross from "../assets/img/projects/cross.svg";
 import Navbar from "../components/navbar";
 import Image from "next/image";
-
+import { FaLink } from "react-icons/fa";
 import Modal from "react-modal";
 
-const Work = (props) => {
+const WorkProjects = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selected, setSelected] = useState();
 
@@ -59,7 +59,7 @@ const Work = (props) => {
       >
         <div className="modal-area">
           <button className="close-btn" onClick={() => setModalOpen(false)}>
-            <Image className="close-cross" src={cross} alt="no" />
+            <Image className="close-cross" src={cross} width={20} height={20} />
           </button>
           <div>
             <Image
@@ -95,10 +95,7 @@ const Work = (props) => {
               />
             </span>
             <span href="?!" className="btn-light">
-              <i className="fas fa-eye"></i> Project
-            </span>
-            <span href="?!" className="btn-dark">
-              <i className="fab fa-github"></i> Github
+              <FaLink className="fa" /> Visit Website
             </span>
           </div>
           <div className="item">
@@ -116,13 +113,9 @@ const Work = (props) => {
               href="https://app.expertrons.com/"
               className="btn-light"
               target="_blank"
-              rel="noreferrer"
             >
-              <i className="fas fa-eye"></i> Project
+              <FaLink className="fa" /> Visit Website
             </a>
-            <span href="?!" className="btn-dark">
-              <i className="fab fa-github"></i> Github
-            </span>
           </div>
           <div className="item">
             <span>
@@ -139,13 +132,9 @@ const Work = (props) => {
               href="https://app.expertrons.com/sign-in"
               className="btn-light"
               target="_blank"
-              rel="noreferrer"
             >
-              <i className="fas fa-eye"></i> Project
+              <FaLink className="fa" /> Visit Website
             </a>
-            <span href="?!" className="btn-dark">
-              <i className="fab fa-github"></i> Github
-            </span>
           </div>
           <div className="item">
             <span>
@@ -162,13 +151,9 @@ const Work = (props) => {
               href="https://app.expertrons.com/"
               className="btn-light"
               target="_blank"
-              rel="noreferrer"
             >
-              <i className="fas fa-eye"></i> Project
+              <FaLink className="fa" /> Visit Website
             </a>
-            <span href="?!" className="btn-dark">
-              <i className="fab fa-github"></i> Github
-            </span>
           </div>
           <div className="item">
             <span>
@@ -185,13 +170,9 @@ const Work = (props) => {
               href="https://www.pocket52.com/"
               className="btn-light"
               target="_blank"
-              rel="noreferrer"
             >
-              <i className="fas fa-eye"></i> Project
+              <FaLink className="fa" /> Visit Website
             </a>
-            <span href="?!" className="btn-dark">
-              <i className="fab fa-github"></i> Github
-            </span>
           </div>
           <div className="item">
             <span>
@@ -208,13 +189,9 @@ const Work = (props) => {
               href="https://www.pocket52.com/"
               className="btn-light"
               target="_blank"
-              rel="noreferrer"
             >
-              <i className="fas fa-eye"></i> Project
+              <FaLink className="fa" /> Visit Website
             </a>
-            <span href="?!" className="btn-dark">
-              <i className="fab fa-github"></i> Github
-            </span>
           </div>
           <div className="item">
             <span>
@@ -231,13 +208,9 @@ const Work = (props) => {
               href="https://www.pocket52.com/"
               className="btn-light"
               target="_blank"
-              rel="noreferrer"
             >
-              <i className="fas fa-eye"></i> Project
+              <FaLink className="fa" /> Visit Website
             </a>
-            <span href="?!" className="btn-dark">
-              <i className="fab fa-github"></i> Github
-            </span>
           </div>
           <div className="item">
             <span>
@@ -254,13 +227,9 @@ const Work = (props) => {
               href="https://www.plancess.com/products"
               className="btn-light"
               target="_blank"
-              rel="noreferrer"
             >
-              <i className="fas fa-eye"></i> Project
+              <FaLink className="fa" /> Visit Website
             </a>
-            <span href="?!" className="btn-dark">
-              <i className="fab fa-github"></i> Github
-            </span>
           </div>
         </div>
       </main>
@@ -269,4 +238,4 @@ const Work = (props) => {
   );
 };
 
-export default Work;
+export default WorkProjects;

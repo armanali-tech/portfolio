@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 
 const AboutMe = (props) => {
   return (
@@ -10,34 +11,39 @@ const AboutMe = (props) => {
           Contact <span className="text-secondary">Me </span>
         </h1>
         <h2 className="sm-heading">This is how you can reach me...</h2>
-        <div className="boxes">
-          <div>
-            <span className="text-secondary"> Email: </span>
-            armanali.inno@gmail.com
-          </div>
-          <div>
-            <span className="text-secondary"> Phone: </span>
-            +91 8169 567 599
-          </div>
-          <div>
-            <span className="text-secondary"> Address: </span>
-            Sion(E), Mumbai 400022
-          </div>
+        <div className="contact-text">
+          <h3
+            className="text"
+            style={{ fontWeight: "bold", marginBottom: "1rem" }}
+          >
+            Get In Touch
+          </h3>
+          <p>
+            I’m always open to discussing product development work or
+            partnership opportunities, my inbox is always open.
+          </p>
+          <p>
+            Whether you have a question or just want to say hi, I’ll try my best
+            to get back to you!
+          </p>
         </div>
+
         <div className="form-row mr-rem mt-rem">
-          <div className="form-field">
-            <h3
-              className="text"
-              style={{ fontWeight: "bold", marginBottom: "1rem" }}
-            >
-              Get In Touch
-            </h3>
-            <p>
-              Although I’m not currently looking for any new opportunities, my
-              inbox is always open. Whether you have a question or just want to
-              say hi, I’ll try my best to get back to you!
-            </p>
+          <div className="boxes">
+            <div>
+              <span className="text-secondary"> Email: </span>
+              armanali.inno@gmail.com
+            </div>
+            <div>
+              <span className="text-secondary"> Phone: </span>
+              +91 8169 567 599
+            </div>
+            <div>
+              <span className="text-secondary"> Address: </span>
+              Sion(E), Mumbai 400022
+            </div>
           </div>
+
           <form
             className="form-field"
             action="https://formspree.io/f/mrgrnpnj"
@@ -81,6 +87,7 @@ const AboutMe = (props) => {
           </form>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

@@ -13,7 +13,7 @@ const GlobalStyle = createGlobalStyle`${styledNormalize}`;
 export default function MyApp(props) {
   const { Component, pageProps } = props;
   const store = useStore(pageProps.state);
-  const title = "Arman Ali | Fullstack developer";
+  const title = "Arman Ali | Full stack web developer";
 
   return (
     <>

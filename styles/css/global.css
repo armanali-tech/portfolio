@@ -73,7 +73,7 @@ body::-webkit-scrollbar-thumb {
   position: fixed;
   top: 0;
   width: 50%;
-  opacity: 0.89;
+  opacity: 0.95;
   transform: translate(100%, 0);
   visibility: hidden;
   z-index: 99;
@@ -235,17 +235,25 @@ h3.lg-heading {
   margin: 2rem 0;
 }
 
+.sm-heading p {
+  padding: 0;
+}
+
 h1.sm-heading,
 h2.sm-heading,
 h3.sm-heading {
-  margin-bottom: 2rem;
-  padding: 0.2rem 1rem;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
   background: rgba(14, 47, 68, 0.5);
 }
 
 a {
   color: #ccd6f6;
   text-decoration: none;
+}
+
+p {
+  padding-bottom: 1rem;
 }
 
 .fa-2x {
@@ -263,7 +271,7 @@ header {
 }
 
 main {
-  padding: 4rem;
+  padding: 2rem 4rem;
   min-height: calc(100vh - 60px);
 }
 
@@ -290,19 +298,18 @@ main #home h1 {
 }
 
 .about-info {
-  margin-right: 30px;
+  margin-right: 1.5rem;
+  margin-top: 3rem;
   display: grid;
-  grid-gap: 50px;
+  grid-gap: 3rem;
   grid-template-areas: "bioimage bio bio" "job1 job2 job3";
   grid-template-columns: repeat(3, 1fr);
   text-align: justify;
 }
 
 .about-info .bio-image {
-  width: 15rem;
   grid-area: bioimage;
-  margin: auto;
-  border-radius: 50%;
+  border-radius: 5%;
   border: #9966ff 3px solid;
 }
 
@@ -331,8 +338,7 @@ main #home h1 {
 
 .projects {
   display: grid;
-  margin-top: 75px;
-  margin-bottom: 50px;
+  margin: 4rem;
   grid-gap: 2rem;
   grid-template-columns: repeat(3, 1fr);
   cursor: pointer;
@@ -350,23 +356,24 @@ main #home h1 {
 }
 
 .boxes {
+  width: 50%;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: center;
-  margin-top: 1rem;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .boxes div {
+  width: 90%;
   font-size: 1.5rem;
   border: 1px #ccd6f6 solid;
-  padding: 0.5rem 6rem;
-  margin-bottom: 3rem;
+  padding: 0.555rem;
+  margin-bottom: 2.5rem;
   transition: all 0.5s ease-out;
 }
 
 .boxes div:hover {
-  padding: 0.5rem 5.5rem;
+  padding: 0.555rem 1rem;
   background: #9966ff;
   color: #000;
 }
@@ -378,10 +385,14 @@ main #home h1 {
 .btn,
 .btn-dark,
 .btn-light {
-  display: block;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   padding: 0.5rem 1rem;
-  border: 0;
   margin-bottom: 0.3rem;
+  font-size: 1vw;
+  border: 0;
+  gap: 0.3rem;
 }
 
 .btn:hover,
@@ -405,20 +416,25 @@ main #home h1 {
 
 .selective-img {
   display: block;
-  margin: 0 auto 10% auto;
-  height: 60%;
-  width: 60%;
   background-color: powderblue;
   transition: transform 5s;
   transition-delay: 1s;
   border-radius: 0.5rem;
 }
 
+.contact-text {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 3.5rem;
+}
+
 .form-field {
   display: flex;
   flex-direction: column;
-  width: 50%;
   flex-wrap: wrap;
+  width: 50%;
 }
 
 .map-field {
@@ -452,51 +468,77 @@ main #home h1 {
 }
 
 .form-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
   width: 10rem;
   height: 3rem;
   font-size: 16px;
   color: #ccd6f6;
-  padding: 0 20px;
-  box-sizing: border-box;
-  margin-bottom: 1rem;
   align-self: flex-end;
   background: #0a2d47;
-  cursor: pointer;
   border: 1px #ccd6f6 solid;
   transition: all 0.5s ease-out;
+  box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  cursor: pointer;
 }
 
-.form-button :hover {
+.form-button:hover {
   background: #9966ff;
   transition: all 0.5s ease-out;
+  color: #000;
+}
+
+.work-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.ReactModal__Content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.modal-area {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 70%;
+  overflow: hidden;
+  box-sizing: border-box;
+  gap: 0.2rem;
 }
 
 .close-btn {
   display: flex;
-  align-content: center;
   justify-content: center;
-  height: 2.2rem;
-  width: 2.2rem;
+  align-items: center;
+  height: 2rem;
+  width: 2rem;
   color: #ccd6f6;
-  font-size: 16px;
-  font-weight: bold;
   background: #0a2d47;
-  margin: 8% 20% 0.5em auto;
   border: 2px solid;
   border-radius: 50%;
-  opacity: 0.9;
-  transition: all 0.3s ease-out;
+  opacity: 0.8;
+  transition: all 0.3s ease-in-out;
+  float: right;
+}
+
+.close-cross {
+  max-width: 2rem !important;
+  max-height: 1rem !important;
 }
 
 .close-btn:hover {
   opacity: 1;
   transition: all 0.3s ease-out;
-}
-
-.close-cross {
-  height: 50%;
-  align-self: center;
 }
 
 #main-footer {
@@ -542,6 +584,11 @@ main #home h1 {
     float: none;
     width: 100%;
     min-height: 0;
+  }
+
+  ul.menu-nav {
+    padding: 13.5vw;
+    justify-content: flex-start;
   }
 
   ul.menu-nav.show,
