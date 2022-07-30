@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import work from "../assets/img/developer.webp";
 import Navbar from "../components/navbar";
+import Footer from "../components/footer";
 
 const AboutMe = (props) => {
   return (
@@ -76,6 +77,7 @@ const AboutMe = (props) => {
           </div>
         </div>
       </main>
+      <Footer />
     </div>
   );
 };

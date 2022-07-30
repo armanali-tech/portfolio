@@ -59,10 +59,10 @@ const Navbar = () => {
             <span className="nav-link">Home</span>
           </li>
           <li className="nav-item" onClick={() => router.push("/about")}>
-            <span className="nav-link">About Me</span>
+            <span className="nav-link">About</span>
           </li>
           <li className="nav-item" onClick={() => router.push("/work")}>
-            <span className="nav-link">My Work</span>
+            <span className="nav-link">Portfolio</span>
           </li>
           <li className="nav-item" onClick={() => router.push("/contact")}>
             <span className="nav-link">Contact</span>

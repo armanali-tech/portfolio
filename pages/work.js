@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import '../assets/styles.scss';
+import Footer from "../components/footer";
 import admin from "../assets/img/projects/admin.png";
 import expertrons from "../assets/img/projects/expertrons.png";
 import explogin from "../assets/img/projects/explogin.png";
@@ -11,7 +11,7 @@ import plancess from "../assets/img/projects/plancess.png";
 import cross from "../assets/img/projects/cross.svg";
 import Navbar from "../components/navbar";
 import Image from "next/image";
-import { FaLink } from "react-icons/fa";
+import { FaChevronCircleRight, FaEye } from "react-icons/fa";
 import Modal from "react-modal";
 
 const WorkProjects = () => {
@@ -84,156 +84,165 @@ const WorkProjects = () => {
         <h2 className="sm-heading">Check out some of my projects...</h2>
         <div className="projects">
           <div className="item">
-            <span>
-              <Image
-                src={admin}
-                alt="Projects"
-                onClick={() => {
-                  setModalOpen(true);
-                  setSelected(1);
-                }}
-              />
+            <span
+              onClick={() => {
+                setModalOpen(true);
+                setSelected(1);
+              }}
+              className="pro-img"
+            >
+              <Image src={admin} alt="Projects" />
+              <FaEye className="eye" />
             </span>
             <span href="?!" className="btn-light">
-              <FaLink className="fa" /> Visit Website
+              Visit Website
+              <FaChevronCircleRight className="fa" />
             </span>
           </div>
           <div className="item">
-            <span>
-              <Image
-                src={expertrons}
-                alt="Projects"
-                onClick={() => {
-                  setModalOpen(true);
-                  setSelected(2);
-                }}
-              />
+            <span
+              className="pro-img"
+              onClick={() => {
+                setModalOpen(true);
+                setSelected(2);
+              }}
+            >
+              <Image src={expertrons} alt="Projects" />
+              <FaEye className="eye" />
             </span>
             <a
               href="https://app.expertrons.com/"
               className="btn-light"
               target="_blank"
             >
-              <FaLink className="fa" /> Visit Website
+              Visit Website
+              <FaChevronCircleRight className="fa" />
             </a>
           </div>
           <div className="item">
-            <span>
-              <Image
-                src={explogin}
-                alt="Projects"
-                onClick={() => {
-                  setModalOpen(true);
-                  setSelected(3);
-                }}
-              />
+            <span
+              className="pro-img"
+              onClick={() => {
+                setModalOpen(true);
+                setSelected(3);
+              }}
+            >
+              <Image src={explogin} alt="Projects" />
+              <FaEye className="eye" />
             </span>
             <a
               href="https://app.expertrons.com/sign-in"
               className="btn-light"
               target="_blank"
             >
-              <FaLink className="fa" /> Visit Website
+              Visit Website
+              <FaChevronCircleRight className="fa" />
             </a>
           </div>
           <div className="item">
-            <span>
-              <Image
-                src={mentor}
-                alt="Projects"
-                onClick={() => {
-                  setModalOpen(true);
-                  setSelected(4);
-                }}
-              />
+            <span
+              className="pro-img"
+              onClick={() => {
+                setModalOpen(true);
+                setSelected(4);
+              }}
+            >
+              <Image src={mentor} alt="Projects" />
+              <FaEye className="eye" />
             </span>
             <a
               href="https://app.expertrons.com/"
               className="btn-light"
               target="_blank"
             >
-              <FaLink className="fa" /> Visit Website
+              Visit Website
+              <FaChevronCircleRight className="fa" />
             </a>
           </div>
           <div className="item">
-            <span>
-              <Image
-                src={lobby}
-                alt="Projects"
-                onClick={() => {
-                  setModalOpen(true);
-                  setSelected(5);
-                }}
-              />
+            <span
+              className="pro-img"
+              onClick={() => {
+                setModalOpen(true);
+                setSelected(5);
+              }}
+            >
+              <Image src={lobby} alt="Projects" />
+              <FaEye className="eye" />
             </span>
             <a
               href="https://www.pocket52.com/"
               className="btn-light"
               target="_blank"
             >
-              <FaLink className="fa" /> Visit Website
+              Visit Website
+              <FaChevronCircleRight className="fa" />
             </a>
           </div>
           <div className="item">
-            <span>
-              <Image
-                src={pocket}
-                alt="Projects"
-                onClick={() => {
-                  setModalOpen(true);
-                  setSelected(6);
-                }}
-              />
+            <span
+              className="pro-img"
+              onClick={() => {
+                setModalOpen(true);
+                setSelected(6);
+              }}
+            >
+              <Image src={pocket} alt="Projects" />
+              <FaEye className="eye" />
             </span>
             <a
               href="https://www.pocket52.com/"
               className="btn-light"
               target="_blank"
             >
-              <FaLink className="fa" /> Visit Website
+              Visit Website
+              <FaChevronCircleRight className="fa" />
             </a>
           </div>
           <div className="item">
-            <span>
-              <Image
-                src={profile}
-                alt="Projects"
-                onClick={() => {
-                  setModalOpen(true);
-                  setSelected(7);
-                }}
-              />
+            <span
+              className="pro-img"
+              onClick={() => {
+                setModalOpen(true);
+                setSelected(7);
+              }}
+            >
+              <Image src={profile} alt="Projects" />
+              <FaEye className="eye" />
             </span>
             <a
               href="https://www.pocket52.com/"
               className="btn-light"
               target="_blank"
             >
-              <FaLink className="fa" /> Visit Website
+              Visit Website
+              <FaChevronCircleRight className="fa" />
             </a>
           </div>
           <div className="item">
-            <span>
-              <Image
-                src={plancess}
-                alt="Projects"
-                onClick={() => {
-                  setModalOpen(true);
-                  setSelected(8);
-                }}
-              />
+            <span
+              className="pro-img"
+              onClick={() => {
+                setModalOpen(true);
+                setSelected(8);
+              }}
+            >
+              <Image src={plancess} alt="Projects" />
+              <FaEye className="eye" />
             </span>
             <a
               href="https://www.plancess.com/products"
               className="btn-light"
               target="_blank"
             >
-              <FaLink className="fa" /> Visit Website
+              Visit Website
+              <FaChevronCircleRight className="fa" />
             </a>
           </div>
         </div>
       </main>
       {modal()}
+      <Footer />
     </div>
   );
 };

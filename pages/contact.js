@@ -12,14 +12,9 @@ const AboutMe = (props) => {
         </h1>
         <h2 className="sm-heading">This is how you can reach me...</h2>
         <div className="contact-text">
-          <h3
-            className="text"
-            style={{ fontWeight: "bold", marginBottom: "1rem" }}
-          >
-            Get In Touch
-          </h3>
+          <h3 className="text">Get In Touch</h3>
           <p>
-            I’m always open to discussing product development work or
+            I’m always open to discussing project development work or
             partnership opportunities, my inbox is always open.
           </p>
           <p>

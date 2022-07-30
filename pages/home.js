@@ -15,7 +15,7 @@ const MyProfile = () => {
   const router = useRouter();
 
   return (
-    <div id="bg-img">
+    <div id="container">
       <Navbar />
       <main id="home">
         <h1 className="lg-heading">
@@ -35,7 +35,6 @@ const MyProfile = () => {
             ]}
             loop={Infinity}
             wrapper="p"
-            style={{ marginBottom: 0 }}
           />
         </h3>
         <div className="icons">
@@ -61,11 +60,12 @@ const MyProfile = () => {
             type="button"
             onClick={() => router.push("/work")}
           >
-            View my work <FaArrowCircleRight className="fa-1x" />
+            View my work{" "}
+            <FaArrowCircleRight style={{ width: "1.2rem", height: "1.2rem" }} />
           </button>
         </div>
       </main>
-      <ParticlesBg color="#000000" type="cobweb" bg={true} />
+      <ParticlesBg color="#ccd6f6" type="cobweb" bg={true} />
     </div>
   );
 };
