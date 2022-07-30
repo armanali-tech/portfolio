@@ -60,8 +60,8 @@ const MyProfile = () => {
             type="button"
             onClick={() => router.push("/work")}
           >
-            View my work{" "}
-            <FaArrowCircleRight style={{ width: "1.2rem", height: "1.2rem" }} />
+            <span>View my portfolio</span>{" "}
+            <FaArrowCircleRight className="arrow" />
           </button>
         </div>
       </main>

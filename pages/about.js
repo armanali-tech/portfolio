@@ -28,16 +28,17 @@ const AboutMe = (props) => {
               I’m Arman Ali, a professional and talented Full stack web
               developer from Mumbai, India. I am passionate about leveraging my
               diverse backgrounds to decipher challenging problems and create
-              delightful experiences. I honed my skills at web development, AWS
-              services and SEO analytics.{" "}
+              delightful experiences. I honed my skills at web development,
+              backend and AWS services.{" "}
             </p>
             <p>
               {" "}
               Since beginning my journey I've been building stuff on the web
-              over 7+ years, I've done remote work for agencies, consulted for
-              startups, and collaborated with talented people to create digital
-              products for both business and consumer use. Working with clients
-              across various countries and industries.{" "}
+              over 7+ years, I've worked at start-ups, tech companies and
+              corporate on a range of different projects, including design
+              systems, websites and apps to create digital products for both
+              business and consumer use. I've done remote work for clients and
+              agencies across various countries and industries.{" "}
             </p>
             <p>
               {" "}
