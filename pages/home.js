@@ -38,27 +38,30 @@ const MyProfile = () => {
           />
         </h3>
         <div className="icons">
-          <a href="https://twitter.com/CooldudeX18" target="_blank">
+          <a href="https://twitter.com/ArmanGeeks" target="_blank">
             <FaTwitter className="fa-2x" />
           </a>
-          <span href="/#">
+          <a
+            href="https://www.facebook.com/people/Arman-Ali/100077120637198/"
+            target="_blank"
+          >
             <FaFacebook className="fa-2x" />
-          </span>
+          </a>
           <a
             href="https://www.linkedin.com/in/arman-ali-15a098208/"
             target="_blank"
           >
             <FaLinkedin className="fa-2x" />
           </a>
-          <span href="/#">
+          <a href="https://github.com/arman-inno" target="_blank">
             <FaGithub className="fa-2x" />
-          </span>
+          </a>
         </div>
         <div className="work-btn">
           <button
             className="form-button"
             type="button"
-            onClick={() => router.push("/work")}
+            onClick={() => router.push("/portfolio")}
           >
             <span>View my portfolio</span>{" "}
             <FaArrowCircleRight className="arrow" />

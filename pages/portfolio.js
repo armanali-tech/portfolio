@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useRouter } from "next/router";
+import Modal from "react-modal";
 import Footer from "../components/footer";
 import admin from "../assets/img/projects/admin.png";
 import expertrons from "../assets/img/projects/expertrons.png";
@@ -11,10 +13,15 @@ import plancess from "../assets/img/projects/plancess.png";
 import cross from "../assets/img/projects/cross.svg";
 import Navbar from "../components/navbar";
 import Image from "next/image";
-import { FaChevronCircleRight, FaEye } from "react-icons/fa";
-import Modal from "react-modal";
+import {
+  FaChevronCircleRight,
+  FaArrowCircleRight,
+  FaEye,
+} from "react-icons/fa";
 
 const WorkProjects = () => {
+  const router = useRouter();
+
   const [modalOpen, setModalOpen] = useState(false);
   const [selected, setSelected] = useState();
 
@@ -24,6 +31,7 @@ const WorkProjects = () => {
       left: "50%",
       right: "auto",
       bottom: "auto",
+      background: "#0a192fdb",
     },
   };
 
@@ -239,6 +247,15 @@ const WorkProjects = () => {
               <FaChevronCircleRight className="fa" />
             </a>
           </div>
+        </div>
+        <div className="work-btn" style={{ margin: "5rem 0" }}>
+          <button
+            className="form-button"
+            type="button"
+            onClick={() => router.push("/contact")}
+          >
+            <span>Get in touch</span> <FaArrowCircleRight className="arrow" />
+          </button>
         </div>
       </main>
       {modal()}

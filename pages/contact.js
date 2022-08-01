@@ -14,8 +14,8 @@ const AboutMe = (props) => {
         <div className="contact-text">
           <h3 className="text">Get In Touch</h3>
           <p>
-            I’m always open to discussing project development work or
-            partnership opportunities, my inbox is always open.
+            I’m always open to discussing remote project work or partnership
+            opportunities, my inbox is always open.
           </p>
           <p>
             Whether you have a question or just want to say hi, I’ll try my best
@@ -31,7 +31,7 @@ const AboutMe = (props) => {
             </div>
             <div>
               <span className="text-secondary"> Phone: </span>
-              +91 8169 567 599
+              +91 7400 401 918
             </div>
             <div>
               <span className="text-secondary"> Address: </span>
@@ -44,7 +44,6 @@ const AboutMe = (props) => {
             action="https://formspree.io/f/mrgrnpnj"
             method="POST"
             target="_blank"
-            rel="noreferrer"
           >
             <div className="form-row">
               <input
