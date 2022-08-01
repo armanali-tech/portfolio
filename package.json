@@ -54,6 +54,7 @@
   "scripts": {
     "lint-staged": "lint-staged",
     "build": "next build",
+    "postbuild": "next-sitemap --config sitemap.config.js",
     "test:ci": "jest --maxWorkers=2 --ci",
     "test": "jest --watch",
     "start": "nodemon -w server config/index.js",
