@@ -8,7 +8,7 @@ import {
   FaGithub,
   FaArrowCircleRight,
 } from "react-icons/fa";
-import Navbar from "../components/Navbar";
+import Navbar from "../components/navbar";
 
 const MyProfile = () => {
   const ParticlesBg = dynamic(() => import("particles-bg"), { ssr: false });

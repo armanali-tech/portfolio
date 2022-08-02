@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/router";
 
-const footer = () => {
+const Footer = () => {
   const router = useRouter();
 
   return (
@@ -16,4 +16,4 @@ const footer = () => {
   );
 };
 
-export default footer;
+export default Footer;

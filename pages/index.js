@@ -2,7 +2,7 @@ import React from "react";
 import { createStore } from "../utils/store";
 import { getReposAsync } from "../utils/features/repoSearch/repoSearchSlice";
 import Home from "./home";
-import Footer from "../components/Footer";
+import Footer from "../components/footer";
 
 const IndexPage = () => {
   return (
