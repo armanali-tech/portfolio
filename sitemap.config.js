@@ -1,7 +1,8 @@
+/** @type {import('next-sitemap').IConfig} */
 const config = {
-  siteUrl: "https://arman.to",
-  generateRobotsTxt: true,
+  siteUrl: process.env.SITE_URL || "https://arman.to",
+  generateRobotsTxt: true, // (optional)
   sitemapSize: 7000,
 };
 
-export default config;
+module.export = config;

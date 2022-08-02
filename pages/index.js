@@ -1,16 +1,15 @@
 import React from "react";
 import { createStore } from "../utils/store";
 import { getReposAsync } from "../utils/features/repoSearch/repoSearchSlice";
-import dynamic from "next/dynamic";
-import Footer from "../components/footer";
+import Home from "./home";
+import Footer from "../components/Footer";
 
 const IndexPage = () => {
-  const Home = dynamic(() => import("./home"), { ssr: false });
   return (
-    <>
+    <div>
       <Home />
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
 import {
   FaTwitter,
   FaFacebook,
@@ -7,11 +8,11 @@ import {
   FaGithub,
   FaArrowCircleRight,
 } from "react-icons/fa";
-import Typical from "react-typical";
-import ParticlesBg from "particles-bg";
-import Navbar from "../components/navbar";
+import Navbar from "../components/Navbar";
 
 const MyProfile = () => {
+  const ParticlesBg = dynamic(() => import("particles-bg"), { ssr: false });
+  const Typical = dynamic(() => import("react-typical"), { ssr: false });
   const router = useRouter();
 
   return (
