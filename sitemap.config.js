@@ -6,3 +6,5 @@ const config = {
 };
 
 module.export = config;
+
+//package.json "postbuild": "next-sitemap --config sitemap.config.js",
