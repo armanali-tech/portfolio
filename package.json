@@ -34,7 +34,8 @@
   "version": "1.0.0",
   "main": "server/index.js",
   "devDependencies": {
-    "@babel/core": "^7.18.0",
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "babel-core": "7.0.0-bridge.0",
@@ -42,6 +43,7 @@
     "babel-jest": "^28.1.0",
     "babel-plugin-inline-dotenv": "^1.7.0",
     "babel-plugin-module-resolver": "^4.1.0",
+    "eslint-config-next": "12.2.4",
     "jest": "^28.1.0",
     "lint-staged": "^12.4.1",
     "nodemon": "^2.0.16",
@@ -50,7 +52,7 @@
     "rimraf": "^3.0.2",
     "snazzy": "^9.0.0",
     "standard": "^17.0.0",
-    "webpack": "^5.72.1"
+    "webpack": "^5.74.0"
   },
   "scripts": {
     "lint-staged": "lint-staged",
@@ -78,12 +80,12 @@
     ]
   },
   "engines": {
-    "node": ">= 10"
+    "node": ">= 12"
   },
   "jest": {
     "modulePaths": [
-      "./src",
-      "./src/test"
+      "./",
+      "./test"
     ],
     "setupFilesAfterEnv": [
       "@testing-library/jest-dom/extend-expect"
@@ -92,6 +94,7 @@
   "repository": "portfolio",
   "bugs": "https://github.com/arman-inno/portfolio/issues",
   "author": "Arman Ali <armanali.inno@gmail.com> (https://github.com/arman-inno)",
-  "license": "EULA",
-  "description": "My Portfolio"
+  "license": "UNLICENSED",
+  "description": "Arman Ali - Fullstack developer profile",
+  "private": true
 }
