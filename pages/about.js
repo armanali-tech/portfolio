@@ -18,7 +18,13 @@ const AboutMe = () => {
         </h1>
         <h2 className="sm-heading">Let me tell you a few things...</h2>
         <div className="about-info">
-          <Image className="bio-image" src={work} />
+          <Image
+            className="bio-image"
+            src={work}
+            alt="Picture of the author"
+            width={400}
+            height={400}
+          />
           <div className="bio">
             <h3
               className="text"

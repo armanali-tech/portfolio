@@ -64,6 +64,7 @@ const WorkProjects = () => {
         ariaHideApp={false}
         onRequestClose={() => setModalOpen(false)}
         shouldCloseOnEsc={true}
+        shouldCloseOnOverlayClick={true}
       >
         <div className="modal-area">
           <button className="close-btn" onClick={() => setModalOpen(false)}>
@@ -73,8 +74,9 @@ const WorkProjects = () => {
             <Image
               className="selective-img"
               src={img}
-              // onClick={() => setModalOpen(false)}
-              alt="no"
+              alt="Picture of the project"
+              width={"100%"}
+              height={600}
             />
           </div>
         </div>
@@ -99,7 +101,12 @@ const WorkProjects = () => {
               }}
               className="pro-img"
             >
-              <Image src={admin} alt="Projects" />
+              <Image
+                src={admin}
+                alt="Picture of the project"
+                width={"100%"}
+                height={200}
+              />
               <FaEye className="eye" />
             </span>
             <span href="?!" className="btn-light">
@@ -115,7 +122,12 @@ const WorkProjects = () => {
                 setSelected(2);
               }}
             >
-              <Image src={expertrons} alt="Projects" />
+              <Image
+                src={expertrons}
+                alt="Picture of the project"
+                width={"100%"}
+                height={200}
+              />
               <FaEye className="eye" />
             </span>
             <a
@@ -135,7 +147,12 @@ const WorkProjects = () => {
                 setSelected(3);
               }}
             >
-              <Image src={explogin} alt="Projects" />
+              <Image
+                src={explogin}
+                alt="Picture of the project"
+                width={"100%"}
+                height={200}
+              />
               <FaEye className="eye" />
             </span>
             <a
@@ -155,7 +172,12 @@ const WorkProjects = () => {
                 setSelected(4);
               }}
             >
-              <Image src={mentor} alt="Projects" />
+              <Image
+                src={mentor}
+                alt="Picture of the project"
+                width={"100%"}
+                height={200}
+              />
               <FaEye className="eye" />
             </span>
             <a
@@ -175,7 +197,12 @@ const WorkProjects = () => {
                 setSelected(5);
               }}
             >
-              <Image src={lobby} alt="Projects" />
+              <Image
+                src={lobby}
+                alt="Picture of the project"
+                width={"100%"}
+                height={200}
+              />
               <FaEye className="eye" />
             </span>
             <a
@@ -195,7 +222,12 @@ const WorkProjects = () => {
                 setSelected(6);
               }}
             >
-              <Image src={pocket} alt="Projects" />
+              <Image
+                src={pocket}
+                alt="Picture of the project"
+                width={"100%"}
+                height={200}
+              />
               <FaEye className="eye" />
             </span>
             <a
@@ -215,7 +247,12 @@ const WorkProjects = () => {
                 setSelected(7);
               }}
             >
-              <Image src={profile} alt="Projects" />
+              <Image
+                src={profile}
+                alt="Picture of the project"
+                width={"100%"}
+                height={200}
+              />
               <FaEye className="eye" />
             </span>
             <a
@@ -235,7 +272,12 @@ const WorkProjects = () => {
                 setSelected(8);
               }}
             >
-              <Image src={plancess} alt="Projects" />
+              <Image
+                src={plancess}
+                alt="Picture of the project"
+                width={"100%"}
+                height={200}
+              />
               <FaEye className="eye" />
             </span>
             <a

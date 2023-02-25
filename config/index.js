@@ -12,7 +12,11 @@ const handler = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  server.use(helmet());
+  server.use(
+    helmet({
+      contentSecurityPolicy: false,
+    })
+  );
   server.use(compression());
 
   const staticPath = path.join(__dirname, "../static");
