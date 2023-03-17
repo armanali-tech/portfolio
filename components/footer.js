@@ -8,9 +8,9 @@ const Footer = () => {
     <footer id="main-footer">
       <div>&copy; 2022 ARMAN ALI</div>
       <div className="footer-menu">
-        <span onClick={() => router.push("/about")}>about</span>
-        <span onClick={() => router.push("/portfolio")}>portfolio</span>
-        <span onClick={() => router.push("/contact")}>contact</span>
+        <span onClick={() => router.push("/about")}>About</span>
+        <span onClick={() => router.push("/portfolio")}>Portfolio</span>
+        <span onClick={() => router.push("/contact")}>Contact</span>
       </div>
     </footer>
   );

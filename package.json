@@ -1,4 +1,7 @@
 {
+  "name": "portfolio",
+  "version": "2.0.0",
+  "main": "server/index.js",
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
     "axios": "^1.3.4",
@@ -30,9 +33,6 @@
     "validator": "^13.9.0",
     "yarn": "^1.22.19"
   },
-  "name": "portfolio",
-  "version": "1.0.0",
-  "main": "server/index.js",
   "devDependencies": {
     "@babel/core": "^7.18.10",
     "@babel/preset-env": "^7.18.10",
@@ -93,7 +93,7 @@
   },
   "repository": "portfolio",
   "bugs": "https://github.com/arman-inno/portfolio/issues",
-  "author": "Arman Ali <armanali.inno@gmail.com> (https://github.com/arman-inno)",
+  "author": "Arman Ali <armanali.inno@gmail.com> (https://github.com/armanali-tech)",
   "license": "UNLICENSED",
   "description": "Arman Ali - Fullstack developer profile",
   "private": true
