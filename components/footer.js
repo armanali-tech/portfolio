@@ -3,14 +3,14 @@ import { useRouter } from "next/router";
 
 const Footer = () => {
   const router = useRouter();
-
+  const year = new Date().getFullYear();
   return (
     <footer id="main-footer">
-      <div>&copy; 2022 ARMAN ALI</div>
+      <div>&copy; {year} ARMAN ALI</div>
       <div className="footer-menu">
-        <span onClick={() => router.push("/about")}>about</span>
-        <span onClick={() => router.push("/portfolio")}>portfolio</span>
-        <span onClick={() => router.push("/contact")}>contact</span>
+        <span onClick={() => router.push("/about")}>About</span>
+        <span onClick={() => router.push("/projects")}>Portfolio</span>
+        <span onClick={() => router.push("/contact")}>Contact</span>
       </div>
     </footer>
   );

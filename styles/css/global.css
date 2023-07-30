@@ -39,6 +39,10 @@ body::-webkit-scrollbar-thumb {
   margin-top: 1rem;
 }
 
+.text-secondary {
+  color: #9966ff;
+}
+
 .menu-btn {
   position: absolute;
   z-index: 9999;
@@ -199,35 +203,6 @@ ul.menu-nav {
   box-sizing: border-box;
 }
 
-body {
-  background: #0a192f;
-  color: #ccd6f6;
-  height: 100%;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-}
-
-body #container {
-  background-attachment: fixed;
-  background-size: cover;
-  background: -webkit-linear-gradient(left, #0a192f, #64428e);
-  background: -o-linear-gradient(left, #0a192f, #64428e);
-  background: linear-gradient(to right, #0a192f, #64428ec3);
-}
-
-body #container:after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: -1;
-  background: rgba(15, 30, 55, 0.1);
-}
-
 h1,
 h2,
 h3 {
@@ -252,7 +227,7 @@ h2.sm-heading,
 h3.sm-heading {
   margin-bottom: 1rem;
   padding: 0.5rem 1rem;
-  background: rgba(14, 47, 68, 0.5);
+  background: rgba(22, 28, 45, 0.5);
 }
 
 a {
@@ -274,34 +249,66 @@ header {
   width: 100%;
 }
 
-.text-secondary {
-  color: #9966ff;
+body {
+  background: #313d49;
+  color: #d8dff8;
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
 }
 
-main {
-  padding: 2rem 4rem;
-  min-height: calc(100vh - 60px);
+body #container {
+  background: -webkit-linear-gradient(left, #0a192f, #64428e);
+  background: -o-linear-gradient(left, #0a192f, #64428e);
+  background: linear-gradient(to right, #313d49eb, #313d49eb);
 }
 
-main .icons {
+body #container:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: -1;
+  background: rgba(15, 30, 55, 0.274);
+}
+
+#container {
+  padding: 0;
+  min-height: calc(100vh - 0.01rem);
+}
+
+.section-body {
+  background: transparent url("../../assets/img/bg_img.jpg") no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  height: 100vh;
+}
+
+section .icons {
+  position: relative;
   margin-top: 1rem;
+  z-index: 5;
 }
 
-main .icons a {
+section .icons a {
   padding: 1rem 0.5rem;
   color: #ccd6f6;
 }
 
-main .icons a:hover {
+section .icons a:hover {
   color: #9966ff;
   transition: all 0.5s ease-in-out;
 }
 
-main #home {
+section #container {
   overflow: hidden;
 }
 
-main #home h1 {
+section #container h1 {
   margin-top: 20vh;
 }
 
@@ -568,24 +575,26 @@ h6 {
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  font-size: 1vw;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #ccd6f6;
   width: 12vw;
   height: 3.5vw;
-  color: #ccd6f6;
-  align-self: flex-end;
-  background: #0a2d47;
+  background: #161c2d;
   border: 1px #ccd6f6 solid;
-  transition: all 0.3s ease-out;
+  border-radius: 0.5rem;
+  transition: all 0.5s ease-out;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   cursor: pointer;
+  z-index: 2;
 }
 
 .form-button:hover {
   background: #9966ff;
-  transition: all 0.3s ease-out;
+  transition: all 0.5s ease-out;
   color: #000;
-  border-color: #9966ff;
+  /* border-color: #9966ff; */
 }
 
 .form-button .arrow {
@@ -596,7 +605,7 @@ h6 {
 
 .form-button:hover .arrow {
   border-radius: 50%;
-  border: 1px solid #ccd6f6;
+  /* border: 1px solid #ccd6f6; */
   transition: left ease 0.3s;
 }
 
