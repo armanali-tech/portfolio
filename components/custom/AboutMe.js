@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import work from "../../assets/img/developer.webp";
 import { FaArrowCircleRight, FaCheckCircle } from "react-icons/fa";
-import Separator from "../resource/separator";
+import Separator from "../resource/separator.js";
 
 const AboutMe = () => {
   // const router = useRouter();
