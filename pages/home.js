@@ -1,14 +1,19 @@
 import React, { lazy } from "react";
-
 import Navbar from "../components/navbar";
-import LandingTop from "../components/homepage/LandingTop";
+import Particles from "../components/custom/Particles";
+import AboutMe from "../components/custom/AboutMe";
+import Projects from "../components/custom/Projects";
+import ContactUs from "../components/custom/ContactUs";
 
 const MyProfile = () => {
   return (
-    <>
+    <main>
       <Navbar />
-      <LandingTop />
-    </>
+      <Particles />
+      <AboutMe />
+      <Projects />
+      <ContactUs />
+    </main>
   );
 };
 

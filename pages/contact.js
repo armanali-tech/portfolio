@@ -12,7 +12,7 @@ const AboutMe = (props) => {
         </h1>
         <h2 className="sm-heading">This is how you can reach me...</h2>
         <div className="contact-text">
-          <h3 className="text">Get In Touch</h3>
+          {/* <h3 className="text-in-touch">Get In Touch</h3> */}
           <p>
             I’m always open to discussing remote project work or partnership
             opportunities, my inbox is always open.
@@ -75,7 +75,11 @@ const AboutMe = (props) => {
               placeholder="Message"
               required
             />
-            <button className="form-button" type="submit">
+            <button
+              className="form-button"
+              style={{ borderRadius: 0 }}
+              type="submit"
+            >
               Send
             </button>
           </form>

@@ -87,7 +87,7 @@ const WorkProjects = () => {
   return (
     <div>
       <Navbar />
-      <main id="work">
+      <main id="showcase">
         <h1 className="lg-heading">
           My <span className="text-secondary"> Portfolio </span>
         </h1>

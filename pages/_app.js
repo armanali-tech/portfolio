@@ -6,7 +6,7 @@ import { useStore } from "../utils/store";
 import styledNormalize from "styled-normalize";
 import Layout from "../components/layout";
 import theme from "../utils/features/theme";
-import "../styles/css/global.css";
+import "../styles/global.scss";
 
 const GlobalStyle = createGlobalStyle`${styledNormalize}`;
 

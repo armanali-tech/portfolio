@@ -15,7 +15,7 @@ const LandingTop = () => {
   const router = useRouter();
 
   return (
-    <section className="section-body">
+    <section id="profile">
       <div id="container">
         <div style={{ padding: "1rem 4rem" }}>
           <h1 className="lg-heading">
