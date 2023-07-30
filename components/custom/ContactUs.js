@@ -1,5 +1,5 @@
 import React from "react";
-import Separator from "../resource/separator";
+import Separator from "../resource/separator.js";
 
 const AboutMe = (props) => {
   return (
