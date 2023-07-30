@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import Modal from "react-modal";
 import Image from "next/image";
 import admin from "../../assets/img/projects/admin.png";
@@ -19,8 +19,7 @@ import {
 import Separator from "../resource/separator";
 
 const WorkProjects = () => {
-  const router = useRouter();
-
+  // const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
   const [selected, setSelected] = useState();
 

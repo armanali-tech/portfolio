@@ -1,12 +1,12 @@
 import React from "react";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import Image from "next/image";
 import work from "../../assets/img/developer.webp";
 import { FaArrowCircleRight, FaCheckCircle } from "react-icons/fa";
 import Separator from "../resource/separator";
 
 const AboutMe = () => {
-  const router = useRouter();
+  // const router = useRouter();
 
   return (
     <section id="about">
