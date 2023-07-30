@@ -16,7 +16,7 @@ import {
   FaArrowCircleRight,
   FaEye,
 } from "react-icons/fa";
-import Separator from "../resource/separator.js";
+import Separator from "../resource/Separator";
 
 const WorkProjects = () => {
   // const router = useRouter();

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Separator(props) {
+const Separator = (props) => {
   const { heading, subheading } = props;
   return (
     <div className="separator">
@@ -9,4 +9,6 @@ export default function Separator(props) {
       <p>{subheading}</p>
     </div>
   );
-}
+};
+
+export default Separator;
