@@ -17,7 +17,6 @@
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-helmet": "^6.1.0",
     "react-icons": "^4.7.1",
     "react-modal": "^3.16.1",
     "react-redux": "^8.0.5",
@@ -52,7 +51,7 @@
     "rimraf": "^4.1.2",
     "snazzy": "^9.0.0",
     "standard": "^17.0.0",
-    "webpack": "^5.74.0"
+    "webpack": "^5.88.2"
   },
   "scripts": {
     "lint-staged": "lint-staged",
@@ -91,10 +90,14 @@
       "@testing-library/jest-dom/extend-expect"
     ]
   },
+  "browserslist": [
+    "defaults and supports es6-module",
+    "maintained node versions"
+  ],
   "repository": "portfolio",
   "bugs": "https://github.com/arman-inno/portfolio/issues",
   "author": "Arman Ali <armanali.inno@gmail.com> (https://github.com/armanali-tech)",
   "license": "UNLICENSED",
-  "description": "Arman Ali - Fullstack developer profile",
+  "description": "Trusted Digital Solutions for Your Needs | Arman Ali - Portfolio",
   "private": true
 }
