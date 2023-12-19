@@ -40,39 +40,40 @@ const AboutMe = (props) => {
           </div>
 
           <form
-            className="form-field"
+            name="contact-us"
             action="https://formspree.io/f/mrgrnpnj"
+            className="form-field"
             method="POST"
             target="_blank"
           >
             <div className="form-row">
               <input
-                className="form-input mr-rem"
-                type="text"
                 name="name"
+                className="form-input mr-rem"
                 placeholder="Name"
+                type="text"
                 required
               />
               <input
+                name="email"
                 className="form-input"
-                type="email"
-                name="_replyto"
                 placeholder="Email"
+                type="email"
                 required
               />
             </div>
             <input
-              className="form-input"
-              type="text"
               name="subject"
+              className="form-input"
               placeholder="Subject"
+              type="text"
               required
             />
             <textarea
-              className="form-input msg"
-              type="text"
               name="massage"
+              className="form-input msg"
               placeholder="Message"
+              type="text"
               required
             />
             <button

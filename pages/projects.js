@@ -35,26 +35,49 @@ const WorkProjects = () => {
     },
   };
 
-  const modal = (param) => {
-    let img = admin;
+  const baseUrl = process.env.NEXT_PUBLIC_MEDIA_URL;
+  const admin = baseUrl + "img/projects/admin.png";
+  const expertrons = baseUrl + "img/projects/expertrons.png";
+  const explogin = baseUrl + "img/projects/explogin.png";
+  const mentor = baseUrl + "img/projects/mentor.png";
+  const lobby = baseUrl + "img/projects/lobby.png";
+  const pocket = baseUrl + "img/projects/pocket.png";
+  const profile = baseUrl + "img/projects/profile.png";
+  const plancess = baseUrl + "img/projects/plancess.png";
+  const cross = baseUrl + "img/projects/cross.svg";
 
-    if (selected === 1) {
-      img = admin;
-    } else if (selected === 2) {
-      img = expertrons;
-    } else if (selected === 3) {
-      img = explogin;
-    } else if (selected === 4) {
-      img = mentor;
-    } else if (selected === 5) {
-      img = lobby;
-    } else if (selected === 6) {
-      img = pocket;
-    } else if (selected === 7) {
-      img = profile;
-    } else if (selected === 8) {
-      img = plancess;
-    } else img = expertrons;
+  let img;
+
+  const modal = (param) => {
+    switch (selected) {
+      case 1:
+        img = admin;
+        break;
+      case 2:
+        img = expertrons;
+        break;
+      case 3:
+        img = explogin;
+        break;
+      case 4:
+        img = mentor;
+        break;
+      case 5:
+        img = lobby;
+        break;
+      case 6:
+        img = pocket;
+        break;
+      case 7:
+        img = profile;
+        break;
+      case 8:
+        img = plancess;
+        break;
+      default:
+        img = admin;
+        break;
+    }
 
     return (
       <Modal
@@ -75,8 +98,8 @@ const WorkProjects = () => {
               className="selective-img"
               src={img}
               alt="Picture of the project"
-              width={"100%"}
-              height={600}
+              width={1040}
+              height={580}
             />
           </div>
         </div>
@@ -104,8 +127,8 @@ const WorkProjects = () => {
               <Image
                 src={admin}
                 alt="Picture of the project"
-                width={"100%"}
-                height={200}
+                width={220}
+                height={180}
               />
               <FaEye className="eye" />
             </span>
@@ -125,8 +148,8 @@ const WorkProjects = () => {
               <Image
                 src={expertrons}
                 alt="Picture of the project"
-                width={"100%"}
-                height={200}
+                width={220}
+                height={180}
               />
               <FaEye className="eye" />
             </span>
@@ -150,8 +173,8 @@ const WorkProjects = () => {
               <Image
                 src={explogin}
                 alt="Picture of the project"
-                width={"100%"}
-                height={200}
+                width={220}
+                height={180}
               />
               <FaEye className="eye" />
             </span>
@@ -175,8 +198,8 @@ const WorkProjects = () => {
               <Image
                 src={mentor}
                 alt="Picture of the project"
-                width={"100%"}
-                height={200}
+                width={220}
+                height={180}
               />
               <FaEye className="eye" />
             </span>
@@ -200,8 +223,8 @@ const WorkProjects = () => {
               <Image
                 src={lobby}
                 alt="Picture of the project"
-                width={"100%"}
-                height={200}
+                width={220}
+                height={180}
               />
               <FaEye className="eye" />
             </span>
@@ -225,8 +248,8 @@ const WorkProjects = () => {
               <Image
                 src={pocket}
                 alt="Picture of the project"
-                width={"100%"}
-                height={200}
+                width={220}
+                height={180}
               />
               <FaEye className="eye" />
             </span>
@@ -250,8 +273,8 @@ const WorkProjects = () => {
               <Image
                 src={profile}
                 alt="Picture of the project"
-                width={"100%"}
-                height={200}
+                width={220}
+                height={180}
               />
               <FaEye className="eye" />
             </span>
@@ -275,8 +298,8 @@ const WorkProjects = () => {
               <Image
                 src={plancess}
                 alt="Picture of the project"
-                width={"100%"}
-                height={200}
+                width={220}
+                height={180}
               />
               <FaEye className="eye" />
             </span>

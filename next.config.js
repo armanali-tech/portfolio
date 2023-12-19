@@ -12,14 +12,33 @@ const options = {
   isServer: true,
   nextRuntime: "nodejs",
   defaultLoaders: { babel: "babel-loader" },
-  assetPrefix: isProd ? "https://www.arman.to" : "",
+  assetPrefix: isProd ? "https://www.armanali.tech" : "",
 };
 
 module.exports = {
   /* config options here */
-  webpack: (config, { dev }) => {
+  // swcMinify: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "arman-ali.s3.amazonaws.com",
+        pathname: "**",
+      },
+      {
+        protocol: "https",
+        hostname: "armanali.tech",
+        pathname: "**",
+      },
+    ],
+  },
+
+  webpack: (config, { isServer }) => {
+    // config.resolve.alias.canvas = false;
+    config.resolve.fallback = { fs: false, path: false };
     config.output.publicPath = `${options.assetPrefix}${config.output.publicPath}`;
-    if (!dev) {
+    if (!isServer) {
+      // config.node = { fs: "empty" };
       config.devtool = "source-map";
     }
     return config;
