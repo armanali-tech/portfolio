@@ -121,7 +121,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 ul.menu-nav {
-  padding: 6.5rem;
+  padding: 5rem 10rem;
 }
 
 .menu-branding {
@@ -147,7 +147,7 @@ ul.menu-nav {
 
 .portrait-img {
   width: 15rem !important;
-  height: auto;
+  height: 16rem;
   border-radius: 50%;
   border: solid 3px #9966ff;
   align-self: center;
@@ -290,7 +290,7 @@ body #container:after {
   margin-top: 3rem;
   display: grid;
   grid-gap: 4rem;
-  grid-template-areas: "bioimage bio bio" "text text text" "job1 job2 job3";
+  grid-template-areas: "bioimage bio bio" "text text text" "divider divider divider" "job1 job2 job3";
   grid-template-columns: repeat(3, 1fr);
   text-align: justify;
 }
@@ -307,7 +307,7 @@ body #container:after {
 }
 
 .about-info .divider {
-  grid-area: bioimage-end;
+  grid-area: divider;
   font-size: 1.2rem;
 }
 
@@ -578,7 +578,7 @@ h6 {
   }
 
   ul.menu-nav {
-    padding: 13.5vw;
+    padding: 5vw 18vw;
     justify-content: flex-start;
   }
 
@@ -588,9 +588,9 @@ h6 {
   }
 
   .menu-nav {
-    height: 75vh;
+    height: 100vh;
     transform: translate3d(-100%, 0, 0);
-    font-size: 24px;
+    font-size: 2rem;
   }
 
   .menu .nav-link {
@@ -598,13 +598,17 @@ h6 {
   }
 
   .menu-branding {
-    height: 25vh;
+    height: 15rem;
     transform: translate3d(100%, 0, 0);
   }
 
   .menu-branding .portrait {
-    width: 160px;
-    height: 160px;
+    width: 10rem;
+    height: 12rem;
+    img {
+      width: 10rem;
+      height: 10.5rem;
+    }
   }
 
   .hero {
@@ -615,10 +619,16 @@ h6 {
     grid-template-areas:
       "bioimage"
       "bio"
+      "divider"
       "job1"
       "job2"
       "job3";
     grid-template-columns: 1fr;
+    margin: 0;
+    img {
+      width: 100%;
+      height: auto;
+    }
   }
 
   .about-info .bio {
@@ -627,21 +637,26 @@ h6 {
   }
 
   .about-info .job {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 
   .boxes {
-    width: 100%;
+    width: 100% !important;
+    padding-right: 0 !important;
   }
 
   .boxes div {
-    font-size: 1rem;
+    font-size: 1.2rem !important;
     padding: 0.5rem 1rem !important;
-    width: 100%;
+    width: 100% !important;
   }
 
   .portrait-img {
     width: 8rem;
+  }
+
+  .contact-text {
+    font-size: 1rem !important;
   }
 
   #main-footer {
