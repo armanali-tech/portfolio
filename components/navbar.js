@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
-import portrait from "../assets/img/arman.jpg";
 
 const Navbar = () => {
   const router = useRouter();
@@ -51,7 +50,12 @@ const Navbar = () => {
       <nav className="menu">
         <div className="menu-branding">
           <div className="portrait">
-            <Image className="portrait-img" src={portrait} />
+            <Image
+              className="portrait-img"
+              src={process.env.NEXT_PUBLIC_MEDIA_URL + "img/ARMAN_DSC_7793.png"}
+              width={180}
+              height={220}
+            />
           </div>
         </div>
         <ul className="menu-nav">

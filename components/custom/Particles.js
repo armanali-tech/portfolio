@@ -17,7 +17,7 @@ const LandingTop = () => {
   return (
     <section id="profile">
       <div id="container">
-        <div style={{ padding: "1rem 4rem" }}>
+        <div className="hero">
           <h1 className="lg-heading">
             <p>
               Hello<span className="text-secondary">,</span>
@@ -66,7 +66,7 @@ const LandingTop = () => {
           <button
             className="form-button"
             type="button"
-            onClick={() => router.push("/portfolio")}
+            onClick={() => router.push("/projects")}
           >
             <spam>View Portfolio</spam> <FaArrowCircleRight className="arrow" />
           </button>

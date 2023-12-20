@@ -11,4 +11,22 @@
        <changefreq>daily</changefreq>
        <priority>1.0000</priority>
   </url>
+   <url>
+       <loc>https://www.armanali.tech/about</loc>
+       <lastmod>2023-12-20T05:44:24+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>1.0000</priority>
+  </url>
+   <url>
+       <loc>https://www.armanali.tech/projects</loc>
+       <lastmod>2023-12-20T05:44:24+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>1.0000</priority>
+  </url>
+  <url>
+       <loc>https://www.armanali.tech/contact</loc>
+       <lastmod>2023-12-20T05:44:24+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>1.0000</priority>
+  </url>
 </urlset>

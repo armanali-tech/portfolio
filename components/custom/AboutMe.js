@@ -1,7 +1,7 @@
 import React from "react";
 // import { useRouter } from "next/router";
 import Image from "next/image";
-import work from "../../assets/img/developer.webp";
+import devImg from "../../assets/img/developer.webp";
 import { FaArrowCircleRight, FaCheckCircle } from "react-icons/fa";
 import Separator from "../resource/Separator";
 
@@ -13,7 +13,7 @@ const AboutMe = () => {
       <div className="about-info">
         <Image
           className="bio-image"
-          src={work}
+          src={"https://arman-ali.s3.amazonaws.com/img/developer.webp"}
           alt="Picture of the author"
           width={400}
           height={400}
@@ -62,7 +62,7 @@ const AboutMe = () => {
             <article className="detail">
               <FaCheckCircle className="left-icon" />
               <div>
-                <h4>HTML5</h4>
+                <h4>HTML</h4>
                 <small>Experienced</small>
               </div>
             </article>
@@ -98,6 +98,20 @@ const AboutMe = () => {
               <FaCheckCircle className="left-icon" />
               <div>
                 <h4>ReactJs</h4>
+                <small>Experienced</small>
+              </div>
+            </article>
+            <article className="detail">
+              <FaCheckCircle className="left-icon" />
+              <div>
+                <h4>NextJs</h4>
+                <small>Experienced</small>
+              </div>
+            </article>
+            <article className="detail">
+              <FaCheckCircle className="left-icon" />
+              <div>
+                <h4>React Native</h4>
                 <small>Experienced</small>
               </div>
             </article>
@@ -149,6 +163,20 @@ const AboutMe = () => {
                 <small>Experienced</small>
               </div>
             </article>
+            <article className="detail">
+              <FaCheckCircle className="left-icon" />
+              <div>
+                <h4>Python</h4>
+                <small>Experienced</small>
+              </div>
+            </article>
+            <article className="detail">
+              <FaCheckCircle className="left-icon" />
+              <div>
+                <h4>C / C++</h4>
+                <small>Experienced</small>
+              </div>
+            </article>
           </div>
         </div>
         <div className="job job-3">
@@ -186,6 +214,13 @@ const AboutMe = () => {
             <article className="detail">
               <FaCheckCircle className="left-icon" />
               <div>
+                <h4>CloudWatch</h4>
+                <small>Experienced</small>
+              </div>
+            </article>
+            <article className="detail">
+              <FaCheckCircle className="left-icon" />
+              <div>
                 <h4>RDS</h4>
                 <small>Experienced</small>
               </div>
@@ -194,6 +229,13 @@ const AboutMe = () => {
               <FaCheckCircle className="left-icon" />
               <div>
                 <h4>AWS SES</h4>
+                <small>Experienced</small>
+              </div>
+            </article>
+            <article className="detail">
+              <FaCheckCircle className="left-icon" />
+              <div>
+                <h4>Amplify</h4>
                 <small>Experienced</small>
               </div>
             </article>
