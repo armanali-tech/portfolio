@@ -63,13 +63,18 @@ const AboutMe = () => {
               and push my boundaries in different directions.
             </p>
           </div>
-          <div className="contact-text">
+          <div className="divider">
             {/* <h3 className="text">Skills I have</h3> */}
             <Separator
             // heading="Skills I have"
             // subheading="Skills I have"
             />
-            <h1 style={{ color: "#d8dff8" }}>Skills I Have</h1>
+            <h1
+              className="md-heading"
+              style={{ color: "#d8dff8", textAlign: "center" }}
+            >
+              Skills I Have
+            </h1>
           </div>
 
           <div className="job job-1">
