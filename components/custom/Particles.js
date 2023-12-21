@@ -28,13 +28,15 @@ const LandingTop = () => {
           <h3 className="sm-heading">
             <Typical
               steps={[
-                "*Full Stack Developer*",
+                "**Full Stack Developer**",
                 2500,
-                "*MERN Stack*",
+                "**MERN Stack**",
                 2500,
-                "*React Native*",
+                "**React Native**",
                 2500,
-                "*AWS Services*",
+                "**AWS Services**",
+                2500,
+                "**DevOps**",
                 2500,
               ]}
               loop={Infinity}
