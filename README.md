@@ -1,6 +1,6 @@
 # my-portfolio
 
-- [Name:] Arman Ali
+- [ ] Name: Arman Ali
 
 ## Getting started
 
@@ -40,52 +40,46 @@ Use the built-in continuous integration in GitLab.
 
 ## Project Name
 
-Portfolio
+# CS50 Final Project: Arman Ali's Portfolio Website
 
-## Description
+Welcome to my CS50 Final Project! This repository showcases the code for my personal portfolio website, a culmination of my journey in CS50 Computer Science.
 
-A portfolio can serve as a modern-day CV. It can help you access tons of opportunities, showcase your work, inspire other developers and also help you keep track of all the things you've been able to achieve in your tech career.
+## Overview
 
-## Badges
+This project is a responsive portfolio website built using HTML, CSS, JavaScript, and React.js on the Next.js framework. The website comprises four main pages:
 
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+1. **Home Page**: Dynamic and visually appealing with integrated particles, it introduces me and highlights some of my projects.
 
-## Visuals
+2. **About Page**: Provides a brief overview of my background and lists some of my major skills.
 
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+3. **Portfolio Page**: Showcases a selection of my live projects, offering a detailed look into my coding endeavors.
 
-## Installation
+4. **Contact Us Page**: Features a user-friendly contact form backed by a third-party API for direct communication.
 
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+## Technologies Used
 
-## Usage
+- HTML
+- CSS
+- JavaScript
+- React.js
+- Next.js
+- AWS Amplify (for hosting)
 
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+## How to Run
 
-## Support
+1. Clone this repository to your local machine.
+2. Install dependencies using `npm install`.
+3. Run the development server with `npm run dev`.
+4. Open your browser and navigate to `http://localhost:3000` to explore the portfolio.
 
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+## Contribution
 
-## Roadmap
+Feel free to fork this repository, explore the code, and suggest improvements. Pull requests are welcome!
 
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+## Acknowledgments
 
-## Contributing
-
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-
-Show your appreciation to those who have contributed to the project.
+Special thanks to CS50 for the invaluable learning experience and inspiration behind this project.
 
 ## License
 
-For open source projects, say how it is licensed.
-
-## Project status
-
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+This project is licensed under the [MIT License](LICENSE). Feel free to use and modify the code as needed.
