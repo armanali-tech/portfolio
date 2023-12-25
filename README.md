@@ -48,10 +48,6 @@ Feel free to fork this repository, explore the code, and suggest improvements. P
 
 Special thanks to CS50 for the invaluable learning experience and inspiration behind this project.
 
-## License
-
-This project is licensed under the [MIT License](LICENSE). Feel free to use and modify the code as needed.
-
 ---
 
 ## Getting started
@@ -88,4 +84,7 @@ Use the built-in continuous integration in GitLab.
 - [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://gitlab.com/-/experiment/new_project_readme_content:41d204bd67dc3dfe0f7af58397a523b9?https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
 - [ ] [Use pull-based deployments for improved Kubernetes management](https://gitlab.com/-/experiment/new_project_readme_content:41d204bd67dc3dfe0f7af58397a523b9?https://docs.gitlab.com/ee/user/clusters/agent/)
 
+## License
+
+This project is licensed under the [MIT License](LICENSE). Feel free to use and modify the code as needed.
 
