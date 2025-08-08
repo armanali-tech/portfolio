@@ -1,11 +1,20 @@
-FROM node:lts-alpine
-ENV NODE_ENV=production
-RUN npm install -g nodemon
-WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --force --silent && mv node_modules ../
+# This is a Dockerfile for a Node.js application.
+FROM node:18.18.2
+# Set the working directory
+WORKDIR /app
+# Copy package.json and package-lock.json
+COPY package*.json ./
+# Install dependencies
+RUN npm install
+# Copy the rest of the application code
 COPY . .
-EXPOSE 3000
-RUN chown -R node config/index.js
-USER node
+# ENV Port 8080
+ENV PORT=8080
+# Expose the port the app runs on
+EXPOSE 8080
+# Start the application
 CMD ["npm", "start"]
+# To build a Docker image
+# docker build -t portfolio .
+# To run a Docker container
+# docker run -p 8089:8080 portfolio
